@@ -195,7 +195,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 6. The Azure CLI includes most of the functionality that you need for Azure Batch. However, new capabilities that are still in preview (such as the Templates and File feature we will use in this lab) are installed by an extension, and are not available from default Azure CLI installation. Run the following command to install the Microsoft Azure Batch Extensions. Note that you can always determine the latest release by visiting <https://github.com/Azure/azure-batch-cli-extensions/releases> and copying the URL for the Python Wheel (.whl) corresponding to the latest release. Use that URL as the value for the Source parameter in the following command:
 
     ```bash
-    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-3.0.4/azure_batch_cli_extensions-3.0.4-py2.py3-none-any.whl
+    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-4.0.0/azure_batch_cli_extensions-4.0.0-py2.py3-none-any.whl
     ```
 
 7. When prompted to install the extension, type Y and press enter.
@@ -213,7 +213,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
       {
         "extensionType": "whl",
         "name": "azure-batch-cli-extensions",
-        "version": "3.0.4"
+        "version": "4.0.0"
       }
     ]
     ```
