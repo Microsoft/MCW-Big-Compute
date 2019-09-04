@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+August 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -464,7 +464,7 @@ _Video and Image Processing_
 
 3. When are these tools used at ThoughtRender? Are they part of a workflow?
 
-    Typically all of these software tools are used as part of a \"workflow\" at the company (i.e., from idea to finished project), and it is important to know at which part of the workflow the tool is used, and how this may fit with other applications. This may be important, for example, for understanding data transfer/flow. The output from one application may need to be stored on storage which is shared, to be used as input for another application. A typical Video Production pipeline (including some typical software tools) is as in the following diagram:
+    Typically, all of these software tools are used as part of a \"workflow\" at the company (i.e., from idea to finished project), and it is important to know at which part of the workflow the tool is used, and how this may fit with other applications. This may be important, for example, for understanding data transfer/flow. The output from one application may need to be stored on storage which is shared, to be used as input for another application. A typical Video Production pipeline (including some typical software tools) is as in the following diagram:
 
 ![The Typical Production pipeline diagram is broken into Pre-production, production, and post-production. Pre-production includes concept, script, storyboard, animatic design, special effects, and 3-D layout. Production includes modelling, animation, and shading and lighting. and rendering. post-production includes compositing, post-processing, and output to media.](media/image4.png "Typical Production pipeline diagram")
 
@@ -488,7 +488,7 @@ _Batch Computing_
 
 5. How would you guide ThoughtRender to load data so it can be processed by the rendering compute workload?
 
-    Typically the data should be loaded into a \"fast\" storage share (e.g., perhaps a BeeGFS or Lustre Parallel File System) as it may be read/written to in parallel by multiple compute nodes at the same time during rendering. Performance of this storage will be key to the overall completion time for rendering. For standard image processing, if the images or frames can be contained within storage on a compute node, then an ordinary storage share (e.g., SMB) can be used from which to load the data. Then the local SSD storage on the compute node can be used during the actual compute processing, with output written back to the SMB share at the end of the processing.
+    Typically, the data should be loaded into a \"fast\" storage share (e.g., perhaps a BeeGFS or Lustre Parallel File System) as it may be read/written to in parallel by multiple compute nodes at the same time during rendering. Performance of this storage will be key to the overall completion time for rendering. For standard image processing, if the images or frames can be contained within storage on a compute node, then an ordinary storage share (e.g., SMB) can be used from which to load the data. Then the local SSD storage on the compute node can be used during the actual compute processing, with output written back to the SMB share at the end of the processing.
 
 6. How will this data be used at the beginning, middle, and end of a compute workload?
 

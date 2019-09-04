@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-June 2019
+August 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -95,7 +95,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
     ![Azure Create a resource icon](media/create-resource.png "Azure Create a resource icon")
 
-3. In the Search the Marketplace text box, type "Ubuntu Server 18.04 LTS VM" and select the same in the drop-down list that appears.
+3. In the Search the Marketplace text box, type **Ubuntu Server 18.04 LTS** and select the same in the drop-down list that appears.
 
     ![In the New blade, Ubuntu Server 18.04 LTS is selected.](media/image12.png "New blade")
 
@@ -130,7 +130,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 6. Select **Next : Disks >**.
 
-7. On the Disks tab, select Standard HDD for the OS disk type, and select **Review + create**.
+7. On the Disks tab, select **Standard HDD** for the OS disk type, and select **Review + create**.
 
     ![Standard HDD is selected as the OS disk type on the Create a virtual machine Disks tab.](media/create-vm-jump-box-disks-blade.png "Create a virtual machine Disks tab")
 
@@ -245,15 +245,15 @@ In this exercise, you will setup your environment to work with Azure Batch.
     - **INSTANCE DETAILS**
         - **Account name**: Provide a name for your new Batch Account. The name you choose must be unique within the Azure region where the account is created (see Location below).
         - **Location**: The Azure region in which to create the Batch account.
-        
+
     - **STORAGE ACCOUNT**
-        - Click **Select a storage account**, select **Create new** on the Choose storage account blade, and then enter a globally unique name for the storage account, and leave the remaining values set to their defaults. Select **OK**.
+        - Choose **Select a storage account**, select **Create new** on the Choose storage account blade, and then enter a globally unique name for the storage account, and leave the remaining values set to their defaults. Select **OK**.    
 
     ![The New Batch account blade is displayed with the values specified above entered into the appropriate fields.](media/create-batch-account.png "New Batch account")
 
 7. Select **Next: Advanced >**.
 
-8. On the Advanced tab, set the following:
+8. On the Advanced tab, ensure the following:
 
     - **POOL ALLOCATION MODE**
         - **Pool allocation mode**: Set to Batch service.
@@ -368,7 +368,7 @@ In this exercise, you will resample video files in a scale-out way by using Azur
     az account set --subscription subscriptionNameOrID
     ```
 
-13. Login to your Batch Account by executing the following command (be sure to replace the batchAccountName with the name of your Batch Account):
+13. Login to your Batch Account by executing the following command (be sure to replace the batchAccountName with the name of your Batch Account and if you did not name your resource group `hands-on-lab` change that as well):
 
     ```bash
     sudo az batch account login -g hands-on-lab -n batchAccountName
@@ -402,7 +402,7 @@ In this exercise, you will resample video files in a scale-out way by using Azur
 
     ![Screenshot of the Settings blade with all fields obscured.](media/image42.png "Settings blade")
 
-6. From the Explorer tree-view, expand your Subscription, then Storage Accounts until you see the Storage Account that is linked with Batch, expand Blob Containers and then double click on the container named fgrp-ffmpeg-input. You should see a listing that includes the 10 MP4 files you previously uploaded.
+6. From the Explorer tree-view, expand your Subscription, then Storage Accounts until you see the Storage Account that is linked with Batch, expand Blob Containers and then select the container named **fgrp-ffmpeg-input**. You should see a listing that includes the 10 MP4 files you previously uploaded.
 
     ![In Azure Storage Explorer, the tree view is expanded and the files display as previously described.](media/image43.png "Azure Storage Explorer")
 
@@ -497,7 +497,7 @@ An Azure Batch Pool Template enables an experienced Batch user to provide a simp
             ]
     ```
 
-11. Save the JSON file by selecting Write Out by typing Control + O followed by Enter to leave the name set to pool.json. Use Control + X to quit nano.
+11. Save the JSON file by selecting Write Out by typing **Control + O** followed by **Enter** to leave the name set to pool.json. Use **Control + X** to quit nano.
 
 12. The template for the pool is now ready for use by an end user.
 
@@ -505,9 +505,9 @@ An Azure Batch Pool Template enables an experienced Batch user to provide a simp
 
 The first step in building a Batch Job is understanding the command line of the tool you want to execute when the task runs. In this case we want to run ffmpeg. In this task, you will become familiar with the command line for ffmpeg and then you will create a Job template that describes to Azure Batch how to invoke ffmpeg to resample each of the videos that were uploaded.
 
-1. Return to your SSH session.
+You can install ffmpeg using the apt-get package manager available within Ubuntu Linux. 
 
-2. You can install ffmpeg using the apt-get package manager available within Ubuntu Linux. Run the following command to do so:
+1.  In the SSM session, run the following command to do so:
 
     ```bash
     sudo apt-get install -y ffmpeg
@@ -619,7 +619,7 @@ The first step in building a Batch Job is understanding the command line of the 
     }
     ```
 
-9. Take a moment to understand what this template does (you can find complete documentation on the template syntax at <https://github.com/Azure/azure-batch-cli-extensions/tree/master/doc>). Let's begin with the parameters object. Similar to the parameters object created for the Pool template, this object enables you to expose the parameters that the user need to provide when running the Job. Notice that in this case, we require a poolId and a jobID as before. However, this template also supports a resolution parameter and uses the default value of "428x240" if the user does not supply a target resolution.
+9. Take a moment to understand what this template does (you can find complete documentation on the template syntax at <https://github.com/Azure/azure-batch-cli-extensions/tree/master/doc>). Let's begin with the parameters object. Similar to the parameters object created for the Pool template, this object enables you to expose the parameters that the user needs to provide when running the Job. Notice that in this case, we require a poolId and a jobID as before. However, this template also supports a resolution parameter and uses the default value of "428x240" if the user does not supply a target resolution.
 
     ```json
         "parameters": {
@@ -670,7 +670,7 @@ The first step in building a Batch Job is understanding the command line of the 
                 },
     ```
 
-12. Next comes the crux of the template, the taskFactory object. A task factory saves you from having to write code that iterates over inputs to dynamically create templates that describe each task. In the below, the tastFactory is configured to as a type of "taskPerFile" which means it will spawn one task for each input MP4 file in the source (which is the input File Group ffmpeg-input). The repeatTask object specifies the parameterized command line for running FFmpeg, where the file names are effectively provided by the task factory as it iterates over each input coming from blobs stored in the Azure Storage account linked to the Batch account. When the task runs, one file will be downloaded from Azure Storage on to the local storage of the local node. Then this file is processed with FFmpeg. The outputFiles object tells the task to copy the files from the local node back to Azure Storage when the task has completed successfully.
+12. Next comes the crux of the template, the taskFactory object. A task factory saves you from having to write code that iterates over inputs to dynamically create templates that describe each task. In the below, the taskFactory is configured as a type of "taskPerFile" which means it will spawn one task for each input MP4 file in the source (which is the input File Group ffmpeg-input). The repeatTask object specifies the parameterized command line for running FFmpeg, where the file names are effectively provided by the task factory as it iterates over each input coming from blobs stored in the Azure Storage account linked to the Batch account. When the task runs, one file will be downloaded from Azure Storage on to the local storage of the local node. Then this file is processed with FFmpeg. The outputFiles object tells the task to copy the files from the local node back to Azure Storage when the task has completed successfully.
 
     ```json
                 "taskFactory": {
@@ -784,7 +784,7 @@ In this task, you will continue in the role of the end user, this time using the
 
 4. Return to Batch Explorer to monitor the job.
 
-5. From the Dashboard, refresh the Batch Account and observe that firstResample is now listed under Job status (and it is active).
+5. From the Dashboard, refresh the Batch Account and observe that firstResample (scroll down a bit) is now listed under Job status (and it is active).
 
     ![Under Job status, firstResample has a status of active.](media/image47.png "Job status")
 
@@ -796,7 +796,7 @@ In this task, you will continue in the role of the end user, this time using the
 
     ![On the Batch Explorer dashboard, firstResample information displays.](media/image48.png)
 
-8. From the Job dashboard, select the Job statistics panel.
+8. From the Job dashboard, select the **Job statistics** panel.
 
     ![Screenshot of the Job statistics icon.](media/image51.png "Job statistics icon")
 
@@ -804,7 +804,7 @@ In this task, you will continue in the role of the end user, this time using the
 
     ![On the Batch Explorer dashboard, a scatter plot graph displays information for firstResample.](media/image52.png "Batch Explorer dashboard graph")
 
-10. At the top right, there is a toggle that to show Job Progress. Select the Job Progress link.
+10. At the top right, there is a toggle that to show Job Progress. Select the **Job Progress** link.
 
     ![Screenshot of the Job progress link.](media/image53.png "Job progress link")
 
@@ -812,7 +812,7 @@ In this task, you will continue in the role of the end user, this time using the
 
     ![On the Batch Explorer dashboard, an area graph displays information for firstResample.](media/image54.png "Batch Explorer dashboard graph")
 
-12. Next, you want to understand which task processed which of the files. Select the Jobs tab on the left, then select the firstResample job. In the tasks list, select any one of the tasks.
+12. Next, you want to understand which task processed which of the files. Select the **Jobs** tab on the left, then select the **firstResample** job. In the tasks list, select any one of the tasks.
 
     ![In the Batch Explorer dashboard Jobs section, task information for various tasks displays for firstResample.](media/image55.png "Batch Explorer dashboard Jobs section")
 
@@ -820,13 +820,13 @@ In this task, you will continue in the role of the end user, this time using the
 
     ![Information for a single task displays in the Batch Explorer dashboard Task outputs section.](media/image56.png "Batch Explorer dashboard task outputs section")
 
-14. So how can you easily see all of the inputs and outputs for a job, across all tasks? Recall we configured the input files to use the notion of a File Group. A File Group is also created to contain all output files. To view these, select the Data tab from the menu on the left, and then choose a File Group. For output File Groups, all of the files belonging to that File Group, regardless of which task may have produced them, are listed.
+14. So how can you easily see all of the inputs and outputs for a job, across all tasks? Recall we configured the input files to use the notion of a File Group. A File Group is also created to contain all output files. To view these, select the **Data** tab from the menu on the left, and then choose a File Group. For output File Groups, all of the files belonging to that File Group, regardless of which task may have produced them, are listed.
 
     ![File information displays for a file group on the Batch Explorer dashboard.](media/image57.png "Batch Explorer dashboard File group")
 
-15. Select the File Group ffmpeg-output.
+15. Select the File Group **fgrp-ffmpeg-output**.
 
-16. In the list of files, select big\_buck\_bunny\_720p\_30mb\_428x240.mp4.
+16. In the list of files, select **big\_buck\_bunny\_720p\_30mb\_428x240.mp4**.
 
 17. In the ribbon of buttons that appears, select the rightmost button with the tool tip "Open in default application" to download and view the resampled version of the video on your local computer.
 
@@ -842,19 +842,19 @@ In this exercise you will configure the resamplePool so that it starts with zero
 
 ### Task 1: Enable Autoscale on the Pool
 
-1. Using a browser, navigate to the Azure Portal and then to the blade for your Batch Account. Select Pools.
+1. Using a browser, navigate to the Azure Portal and then to the blade for your Batch Account. Select **Pools**.
 
     ![On the Batch account blade, under Features, Pools is selected.](media/image59.png "Batch account blade")
 
-2. In the Pools listing, select your resamplePool.
+2. In the Pools listing, select your **resamplePool**.
 
     ![Under Pool ID, resamplePool is selected.](media/image60.png "Pool ID")
 
-3. Select Scale from the command bar.
+3. Select **Scale** from the command bar.
 
     ![Scale icon](media/image61.png "Scale icon")
 
-4. Before you can add AutoScale formulas, you first need to enable Auto scale, since this pool was created without Auto scale enabled. On the Scale pool blade, set the Mode toggle to Auto scale.
+4. Before you can add AutoScale formulas, you first need to enable Auto scale, since this pool was created without Auto scale enabled. On the Scale pool blade, set the Mode toggle to **Auto scale**.
 
     ![Auto scale is selected for Mode.](media/image62.png "Mode option")
 
@@ -878,13 +878,13 @@ In this exercise you will configure the resamplePool so that it starts with zero
 
 We had to enable Auto scale using the portal, but we can also edit the Auto scale formula using Batch Explorer. In this Task we will use Batch Explorer to configure the Auto scale.
 
-1. Switch over to Batch Explorer.
+1. Switch over to **Batch Explorer**.
 
-2. Select the Pools tab, and then select the resamplePool to view the details.
+2. Select the **Pools** tab, and then select the **resamplePool** to view the details.
 
     ![On the Pools tab, resamplePool information displays, along with the message that the pool has no nodes.](media/image64.png "Pools tab")
 
-3. Select the Resize button. If you do not see this button, you may need to wait for your pool to finish resizing down to 0 nodes.
+3. Select the **Resize** button. If you do not see this button, you may need to wait for your pool to finish resizing down to 0 nodes.
 
     ![Screenshot of the Resize button.](media/image65.png "Resize button")
 
@@ -892,7 +892,7 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
     ![Under Resize your pool, Auto Scale is selected, and the same formula displays.](media/image66.png "Resize your pool section")
 
-5. Set the Evaluation interval to 5 minutes. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
+5. Set the Evaluation interval to **5 minutes**. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
 
     ![Evaluation interval is set to five minutes.](media/image67.png "Evaluation interval")
 
@@ -949,21 +949,21 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
     $NodeDeallocationOption = taskcompletion;
     ```
 
-12. Select Save in the Resize your pool dialog.
+12. Select **Save** in the Resize your pool dialog.
 
     ![The Resize your pool dialog box displays.](media/image68.png "Resize your pool dialog box")
 
-13. Verify that the Formula was applied, by selecting the Resize button again. If it did not save your Formula:
+13. Verify that the Formula was applied, by selecting the **Resize** button again. If it did not save your Formula:
 
     - Navigate to the blade for you Batch Account and select your Batch Pool using the Azure Portal (as you did previously).
 
-    - Select Scale.
+    - Select **Scale**.
 
     - Paste in the Formula into the Formula textbox.
 
     - Set the AutoScaleEvaluationInterval to 5 minutes.
 
-    - Select Save.
+    - Select **Save**.
 
         ![The Scale pool blade displays with the previously defined information.](media/image69.png "Scale pool blade")
 
@@ -987,7 +987,7 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
     poolId (The name of Azure Batch pool which runs the job): **resamplePool**
 
-4. Return to Batch Explorer, select the Pools tab and select the resamplePool. You will monitor the scaling of the Pool using this view. It should start with no nodes, similar to the following:
+4. Return to **Batch Explorer**, select the **Pools** tab and select the **resamplePool** pool. You will monitor the scaling of the Pool using this view. It should start with no nodes, similar to the following:
 
     ![The Batch Explorer desktop Pools tab displays with the message that the pool has no nodes.](media/image70.png "Batch Explorer desktop Pools tab")
 
@@ -1041,11 +1041,11 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     <https://support.solidangle.com/download/attachments/40665256/Introduction-to-Arnold_robot_final.zip?version=1&modificationDate=1490281794000&api=v2>
 
-2. Unzip the .max file into a folder called scene:
+2. Unzip the .max file into a folder called **scene**:
 
     ![The Introduction to Arnold robot final .max folder displays.](media/image80.png ".Max file").
 
-3. Next go to the Data tab in Batch Explorer, under Storage Containers select File Groups in the drop-down. Then select the + to the right of the label Storage Containers and select From local folder (File group).
+3. Next go to the Data tab in Batch Explorer, under Storage Containers select File Groups in the drop-down. Then select the **+** to the right of the label Storage Containers and select **From local folder (File group)**.
 
     ![Screenshot of the new File Group options.](media/image81.png "New file group")
 
@@ -1053,39 +1053,39 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     - **File group name**: Specify 3dsmax-input.
 
-    - **Files**: Use the select a folder button to navigate to the Scene directory and select it.
+    - **Files**: Use the select a folder button to navigate to the **scene** directory and select it.
 
     - **File Options**: Leave these at the default values.
 
-    - Select Create and close.
+    - Select **Create and close**.
 
         ![The Create file group page displays. ](media/image83.png "Create file group section")
 
-5. Next, you will create the file group that will contain the Job outputs. From the top select the + to the right of the label Storage Containers, and this time select Empty file group.
+5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers, and this time select **Empty file group**.
 
     ![Screenshot of the new File Group options.](media/image81.png "New file group")
 
-6. Provide the name 3dsmax-output and select Confirm to create the new file group.
+6. Provide the name **3dsmax-output** and select **Confirm** to create the new file group.
 
     ![Under Add a new file group, 3dsmax-output displays.](media/image84.png "Add a new file group section")
 
 ### Task 2: Render a 3ds Max Scene
 
-1. Select the Gallery tab from the left.
+1. Select the **Gallery** tab from the left.
 
     ![the Gallery of market applications displays on the Batch Explorer desktop.](media/image85.png "Batch Explorer desktop")
 
-2. In the list of Market applications, select 3ds Max.
+2. In the list of Market applications, select **3ds Max**.
 
-3. You will be presented with list of actions you can take with 3ds Max and Azure Batch. Select VRay or Arnold Scene.
+3. You will be presented with list of actions you can take with 3ds Max and Azure Batch. Select **VRay or Arnold Scene**.
 
     ![On the Choose action tab, a list of actions displays. At this time, we are unable to capture all of the action options. Future versions of this course should address this.](media/image86.png "Choose action")
 
-4. When using the Rendering Service, you can have the Pool automatically created according to the requirements of 3ds Max or you can supply your own (which requires you to properly configure such a Pool). Select Run job with auto pool.
+4. When using the Rendering Service, you can have the Pool automatically created according to the requirements of 3ds Max or you can supply your own (which requires you to properly configure such a Pool). Select **Run job with auto pool**.
 
     ![Under Mode, the Run job with auto pool button is selected.](media/image87.png "Run mode")
 
-5. In the Pool configuration, supply the pool name 3dsmax-Pool. Leave the number of nodes at 1 and the VM size at Standard\_D2\_V2.
+5. In the Pool configuration, supply the pool name **3dsmax-Pool**. Leave the number of nodes at **1** and the VM size at **Standard\_D2\_V2**.
 
     ![Under Pool, fields are set to the previously defined settings.](media/image88.png "Pool")
 
@@ -1113,7 +1113,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
         ![Under Job, fields are set to the previously defined settings.](media/image89.png "Job")
 
-7. Select the Run and close button to create the Pool and launch the render Job.
+7. Select the **Run and close** button to create the Pool and launch the render Job.
 
     ![Screenshot of the Run and close button.](media/image90.png "Run and close")
 
@@ -1139,11 +1139,11 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     ![On the Batch Explorer desktop Data tab, the tree view is expanded, and the robot image displays.](media/image95.png "Batch Explorer desktop, Data tab")
 
-14. Return to the Jobs tab, and observe that the Job is also automatically terminating.
+14. Return to the **Jobs** tab, and observe that the Job is also automatically terminating.
 
     ![On the Batch Explorer desktop Jobs tab, the job status is terminating.](media/image96.png "Batch Explorer desktop, Jobs tab")
 
-15. Switch to the Pools tab and observe that the autopool is also being deleted automatically.
+15. Switch to the **Pools** tab and observe that the autopool is also being deleted automatically.
 
     ![On the Batch Explorer desktop Pools tab, the pool status is deleting.](media/image97.png "Batch Explorer desktop, Pools tab")
 
