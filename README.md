@@ -6,7 +6,7 @@ They currently operate their own, on-premises services (with their own on-premis
 
 They believe that bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
 
-August 2019
+November 2019
 
 ## Target audience
 
@@ -18,7 +18,7 @@ August 2019
 
 ### Workshop
 
-In this workshop, you will setup and configure a scale-out media processing architecture using Azure Batch. You'll discover how to use High Performance Computing (scale out compute, embarrassingly parallel processing) techniques without having to write a lot of code, and learn how these tasks can be accomplished declaratively.
+In this workshop, you will set up and configure a scale-out media processing architecture using Azure Batch. You'll discover how to use High Performance Computing (scale out compute, embarrassingly parallel processing) techniques without having to write a lot of code, and learn how these tasks can be accomplished declaratively.
 
 At the end of this workshop, you will have a deeper understanding of how to use the core capabilities of Azure Batch, understand how to author Custom Pool and Job templates, work with Job input and output files, author Batch auto-scale formulas, leverage Batch Explorer and the Azure Portal for management and monitoring, and use Marketplace applications to simplify common big compute tasks, such as 3D rendering.
 
@@ -26,7 +26,7 @@ At the end of this workshop, you will have a deeper understanding of how to use 
 
 In this whiteboard design session, you will work with a group to design a scale-out media processing solution using High Performance Computing (HPC) techniques in Azure.
 
-At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable, and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to effectively manage and monitor these solutions to ensure predictable outcomes.
+At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to manage and monitor these solutions to ensure predictable outcomes effectively.
 
 ### Hands-on lab
 
