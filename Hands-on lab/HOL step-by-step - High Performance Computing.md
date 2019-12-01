@@ -709,6 +709,8 @@ In this task, pretend you are switching roles and are now the end user who has b
 
 1. Within the SSH session, make sure you have navigated to the folder that contains the pool.json file.
 
+    > **Note**: The folder should be `~/samples` in the SSH session. You can verify by navigating to that folder and then running `ls` at the command prompt.
+
 2. Run the following command to create a new Batch Pool from the template (be sure to replace the batchAccountName and batchAccountLocation with the values specific to your Batch Account):
 
     ```bash
@@ -718,7 +720,7 @@ In this task, pretend you are switching roles and are now the end user who has b
     > **Note**: If you get an error running the above command along the lines of **'float' object cannot be interpreted as an integer**, follow these steps:
 
     - Use nano to edit this file:
-        `nano /home/zoinertejada/.azure/cliextensions/azure-batch-cli-extensions/azext/batch/operations/task_operations.py`
+        `nano /home/labuser/.azure/cliextensions/azure-batch-cli-extensions/azext/batch/operations/task_operations.py`
 
     - Use Control + _  (control and underscore requires using the shift key), type 274 and press enter to go to line 274.
 
@@ -742,15 +744,17 @@ In this task, pretend you are switching roles and are now the end user who has b
 
     nodeCount (The number of pool nodes): **5**
 
-4. Switch to Batch Explorer and look at Dashboard for your Batch Account. In the Pool status panel, you should see that resamplePool listed, that it is a Linux pool (indicated by the Penguin icon) and that it is resizing from 0 to 5 instances (as it provisions the VM nodes in the pool).
+4. Switch to Batch Explorer and look at the Dashboard for your Batch Account.
+
+5. Ensure your batch account is selected, and then select **Pools** from the left-hand menu. In the Pool status panel, you should see that resamplePool listed, that it is a Linux pool (indicated by the Penguin icon) and that it is resizing from 0 to 5 instances (as it provisions the VM nodes in the pool).
 
     ![In the Batch Explorer dashboard, Pool status now lists resamplePool.](media/image45.png "Batch Explorer dashboard")
 
-5. It will take about 2-3 minutes for the Pool to be ready (at which point the resamplePool status will show a fixed 5 instances).
+6. It will take about 2-3 minutes for the Pool to be ready (at which point the resamplePool status will show a fixed 5 instances).
 
     ![resamplePool lists five instances and a status of ready.](media/image46.png "Pool status")
 
-6. This means the VM nodes in the pool are ready for some work. Continue with the next task to supply some work.
+7. This means the VM nodes in the pool are ready for some work. Continue with the next task to supply some work.
 
 ### Task 2: Create and Run a Job using the Azure Batch Job Template
 
@@ -768,57 +772,50 @@ In this task, you will continue in the role of the end user, this time using the
 
     The behavior of this command has been altered by the following extension: azure-batch-cli-extensions.
 
-    jobId (The name of Azure Batch job): **firstResample**
+    - jobId (The name of Azure Batch job): **firstResample**
+    - poolId (The name of Azure Batch pool which runs the job): **resamplePool**
 
-    poolId (The name of Azure Batch pool which runs the job): **resamplePool**
+4. Return to Batch Explorer to monitor the job by selecting your Batch account and then selecting Jobs from the left-hand menu and selecting the firstResample job to drill into the details of the job. Observe the overall status of the Job is displayed at the top-left, near the Job name. Also, each of the tasks is indicated in the list with its status.
 
-4. Return to Batch Explorer to monitor the job.
+    ![Under Jobs, firstResample has a status of active.](media/image47.png "Job status")
 
-5. From the Dashboard, refresh the Batch Account and observe that firstResample (scroll down a bit) is now listed under Job status (and it is active).
-
-    ![Under Job status, firstResample has a status of active.](media/image47.png "Job status")
-
-6. Select firstResample to drill into the details of the Job. Observe the overall status of the Job is displayed at the top-left, near the Job name. Also, each of the tasks is indicated in the list with its status.
-
-    ![On the Batch Explorer dashboard, firstResample information displays.](media/image48.png "Batch Explorer dashboard")
-
-7. Select the Refresh button (![Screenshot of the Refresh icon](media/image49.png "Refresh icon")) periodically until you see the status change from Active to Completed.
+5. Select the Refresh button periodically until you see the status change from Active to Completed.
 
     ![On the Batch Explorer dashboard, firstResample information displays.](media/image48.png)
 
-8. From the Job dashboard, select the **Job statistics** panel.
+6. From the Job dashboard, select the **Job statistics** panel.
 
     ![Screenshot of the Job statistics icon.](media/image51.png "Job statistics icon")
 
-9. The first chart displayed is a scatter plot (with some faint green dots where each dot represents a single task) showing how long each task took to run. About how long did all of your tasks take to run?
+7. The first chart displayed is a scatter plot (with some faint green dots where each dot represents a single task) showing how long each task took to run. About how long did all of your tasks take to run?
 
     ![On the Batch Explorer dashboard, a scatter plot graph displays information for firstResample.](media/image52.png "Batch Explorer dashboard graph")
 
-10. At the top right, there is a toggle that to show Job Progress. Select the **Job Progress** link.
+8. At the top right, there is a toggle that to show Job Progress. Select the **Job Progress** link.
 
     ![Screenshot of the Job progress link.](media/image53.png "Job progress link")
 
-11. The Job Progress chart is displayed, that summarizes the spread of time taken to start and end all tasks, as the number of tasks running increases. Recall the Batch Pool was configured with 5 nodes, where each node could run only one task at a time. Your chart should show the first 5 tasks running right away, and then the next set of 5 tasks start as soon as the previous tasks begin to finish, and slots open up on the nodes.
+9. The Job Progress chart is displayed, that summarizes the spread of time taken to start and end all tasks, as the number of tasks running increases. Recall the Batch Pool was configured with 5 nodes, where each node could run only one task at a time. Your chart should show the first 5 tasks running right away, and then the next set of 5 tasks start as soon as the previous tasks begin to finish, and slots open up on the nodes.
 
     ![On the Batch Explorer dashboard, an area graph displays information for firstResample.](media/image54.png "Batch Explorer dashboard graph")
 
-12. Next, you want to understand which task processed which of the files. Select the **Jobs** tab on the left, then select the **firstResample** job. In the tasks list, select any one of the tasks.
+10. Next, you want to understand which task processed which of the files. Select the **Jobs** tab on the left, then select the **firstResample** job. In the tasks list, select any one of the tasks.
 
     ![In the Batch Explorer dashboard Jobs section, task information for various tasks displays for firstResample.](media/image55.png "Batch Explorer dashboard Jobs section")
 
-13. This will take you to the task details. Notice that by default the Task Outputs tab is selected. In the Node Files tree view, select the folder called wd (this name is short for "working directory"). Observe that this folder has two MP4 files in it. One is the source file (in the screenshot below it is the big\_buck\_bunny2\_720p\_30mb.mp4 file) that was resampled, and the other file is the resampled output file (big\_buck\_bunny2\_720p\_30mb\_428x240.mp4 in the screenshot).
+11. This will take you to the task details. Notice that by default the Task Outputs tab is selected. In the Node Files tree view, select the folder called wd (this name is short for "working directory"). Observe that this folder has two MP4 files in it. One is the source file (in the screenshot below it is the big\_buck\_bunny2\_720p\_30mb.mp4 file) that was resampled, and the other file is the resampled output file (big\_buck\_bunny2\_720p\_30mb\_428x240.mp4 in the screenshot).
 
     ![Information for a single task displays in the Batch Explorer dashboard Task outputs section.](media/image56.png "Batch Explorer dashboard task outputs section")
 
-14. So how can you easily see all of the inputs and outputs for a job, across all tasks? Recall we configured the input files to use the notion of a File Group. A File Group is also created to contain all output files. To view these, select the **Data** tab from the menu on the left, and then choose a File Group. For output File Groups, all of the files belonging to that File Group, regardless of which task may have produced them, are listed.
+12. So how can you easily see all of the inputs and outputs for a job, across all tasks? Recall we configured the input files to use the notion of a File Group. A File Group is also created to contain all output files. To view these, select the **Data** tab from the menu on the left, and then choose a File Group. For output File Groups, all of the files belonging to that File Group, regardless of which task may have produced them, are listed.
 
     ![File information displays for a file group on the Batch Explorer dashboard.](media/image57.png "Batch Explorer dashboard File group")
 
-15. Select the File Group **fgrp-ffmpeg-output**.
+13. Select the File Group **fgrp-ffmpeg-output**.
 
-16. In the list of files, select **big\_buck\_bunny\_720p\_30mb\_428x240.mp4**.
+14. In the list of files, select **big\_buck\_bunny\_720p\_30mb\_428x240.mp4**.
 
-17. In the ribbon of buttons that appears, select the rightmost button with the tool tip "Open in default application" to download and view the resampled version of the video on your local computer.
+15. In the ribbon of buttons that appears, select the rightmost button with the tool tip "Open in default application" to download and view the resampled version of the video on your local computer.
 
     ![Under Files, big buck bunny file is selected, and the Open in default application is highlighted.](media/image58.png "Video screenshot")
 
