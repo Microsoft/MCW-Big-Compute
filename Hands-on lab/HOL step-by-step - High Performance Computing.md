@@ -45,9 +45,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Create a Pool using the Azure Batch Pool Template](#task-1-create-a-pool-using-the-azure-batch-pool-template)
     - [Task 2: Create and Run a Job using the Azure Batch Job Template](#task-2-create-and-run-a-job-using-the-azure-batch-job-template)
   - [Exercise 4: Scaling a Pool](#exercise-4-scaling-a-pool)
-    - [Task 1: Enable Autoscale on the Pool](#task-1-enable-autoscale-on-the-pool)
-    - [Task 2: Apply an Autoscale Formula](#task-2-apply-an-autoscale-formula)
-    - [Task 3: Trigger and observe Autoscale](#task-3-trigger-and-observe-autoscale)
+    - [Task 1: Enable Auto-scale on the Pool](#task-1-enable-auto-scale-on-the-pool)
+    - [Task 2: Apply an Auto-scale Formula](#task-2-apply-an-auto-scale-formula)
+    - [Task 3: Trigger and observe Auto-scale](#task-3-trigger-and-observe-auto-scale)
   - [Exercise 5: 3D Rendering with the Batch Rending Service](#exercise-5-3d-rendering-with-the-batch-rending-service)
     - [Task 1: Create the File Groups](#task-1-create-the-file-groups)
     - [Task 2: Render a 3ds Max Scene](#task-2-render-a-3ds-max-scene)
@@ -825,45 +825,40 @@ In this task, you will continue in the role of the end user, this time using the
 
 Duration: 45 minutes
 
-In this exercise you will configure the resamplePool so that it starts with zero nodes. You will define an Autoscale Formula that will automatically scale up the number of nodes in the pool when there are tasks to process. When all tasks have completed, the pools will scale back down to zero nodes in the pool.
+In this exercise you will configure the resamplePool so that it starts with zero nodes. You will define an Auto-scale Formula that will automatically scale up the number of nodes in the pool when there are tasks to process. When all tasks have completed, the pools will scale back down to zero nodes in the pool.
 
-### Task 1: Enable Autoscale on the Pool
+### Task 1: Enable Auto-scale on the Pool
 
-1. Using a browser, navigate to the Azure Portal and then to the blade for your Batch Account. Select **Pools**.
+1. Using a browser, navigate to the Azure Portal and then to the blade for your Batch Account. Select **Pools** and then select the **resamplePool** from the list.
 
-    ![On the Batch account blade, under Features, Pools is selected.](media/image59.png "Batch account blade")
+    ![On the Batch account blade, under Features, Pools is selected and under Pool ID, resamplePool is selected.](media/image59.png "Batch account blade")
 
-2. In the Pools listing, select your **resamplePool**.
-
-    ![Under Pool ID, resamplePool is selected.](media/image60.png "Pool ID")
-
-3. Select **Scale** from the command bar.
+2. Select **Scale** from the command bar.
 
     ![Scale icon](media/image61.png "Scale icon")
 
-4. Before you can add AutoScale formulas, you first need to enable Auto scale, since this pool was created without Auto scale enabled. On the Scale pool blade, set the Mode toggle to **Auto scale**.
+3. Before you can add Auto-Scale formulas, you first need to enable Auto-scale, since this pool was created without Auto-scale enabled. On the Scale pool blade, set the following:
 
-    ![Auto scale is selected for Mode.](media/image62.png "Mode option")
-
-5. In order to save the change, you also need to provide a Formula. We'll get to writing an Auto scale formula that actually performs dynamic scaling momentarily, but for now simply enter the following formula which will set your Pool to have 0 nodes.
+    - **Mode**: Toggle to **Auto scale**.
+    - **Formula**: To save the change, you also need to provide a Formula. We'll get to writing an Auto-scale formula that actually performs dynamic scaling momentarily, but for now simply enter the following formula which will set your Pool to have 0 nodes.
 
     ```powershell
     $TargetDedicated=0
     ```
 
-6. Select **Save**.
+    ![Auto scale is selected for Mode.](media/image62.png "Mode option")
 
-    ![Screenshot of the Scale pool blade.](media/image62.png "Scale pool blade")
+4. Select **Save**.
 
-7. Now that your Pool is enabled for Auto scale, you can evaluate the formulas you enter into the Formulas text box. Select the Evaluate button that appears and observe the result (basically it means we set to the pool size to 0 and terminates any tasks immediately, putting them back on the job queue so that they are rescheduled when nodes become available).
+5. Now that your Pool is enabled for Auto-scale, you can evaluate the formulas you enter into the Formulas text box. Select the Evaluate button that appears and observe the result (basically it means we set to the pool size to 0 and terminates any tasks immediately, putting them back on the job queue so that they are rescheduled when nodes become available).
 
     ![In the Formula text box, \$TargetDedicated=0 displays. ](media/image63.png "Formula text box")
 
-8. The pool will re-size to have zero nodes, but Auto scale will now be enabled.
+6. The pool will re-size to have zero nodes, but Auto scale will now be enabled.
 
-### Task 2: Apply an Autoscale Formula
+### Task 2: Apply an Auto-scale Formula
 
-We had to enable Auto scale using the portal, but we can also edit the Auto scale formula using Batch Explorer. In this Task we will use Batch Explorer to configure the Auto scale.
+We had to enable Auto-scale using the portal, but we can also edit the Auto-scale formula using Batch Explorer. In this Task we will use Batch Explorer to configure the Auto-scale.
 
 1. Switch over to **Batch Explorer**.
 
@@ -913,7 +908,7 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
 8. In the next line, we determine how many samples were collected. If fewer than 70 percent of the expected samples were collected, then we determine the number of tasks from the very last sample we received. Otherwise, we choose the larger number of tasks provided by either the last sample or the average number of tasks over the last 5 minutes.
 
-    ```powersehll
+    ```powershell
     $tasks = $samples < 70 ? max(0, $ActiveTasks.GetSample(1)) : max( $ActiveTasks.GetSample(1), avg($ActiveTasks.GetSample(TimeInterval_Minute * 5)));
     ```
 
@@ -956,9 +951,9 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
 14. As there are currently no Tasks scheduled for the Pool, the pool size should remain at 0 nodes. Continue on to the next Task to submit some work and to observe the behavior of your Auto Scale configuration.
 
-### Task 3: Trigger and observe Autoscale
+### Task 3: Trigger and observe Auto-scale
 
-1. Return to your SSH session. You will submit a Job like you had done previously and observe how the Pool responds now that Auto Scale is configured.
+1. Return to your SSH session. You will submit a Job like you did previously and observe how the Pool responds now that Auto-scale is configured.
 
 2. Run the following command to create and run the job to resample the images. Be sure to replace batchAccountName and batchAccountLocation as appropriate.
 
@@ -970,27 +965,26 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
     The behavior of this command has been altered by the following extension: azure-batch-cli-extensions.
 
-    jobId (The name of Azure Batch job): **scalingResampleTest**
-
-    poolId (The name of Azure Batch pool which runs the job): **resamplePool**
+    - jobId (The name of Azure Batch job): **scalingResampleTest**
+    - poolId (The name of Azure Batch pool which runs the job): **resamplePool**
 
 4. Return to **Batch Explorer**, select the **Pools** tab and select the **resamplePool** pool. You will monitor the scaling of the Pool using this view. It should start with no nodes, similar to the following:
 
     ![The Batch Explorer desktop Pools tab displays with the message that the pool has no nodes.](media/image70.png "Batch Explorer desktop Pools tab")
 
-5. Within 1-5 minutes, you should see the Pool indicates it is scaling from 0-4 nodes. At this point, the pool will begin provisioning the VMs. The time this takes depends on when the Auto scale rule is re-evaluated.
+5. Within 1-5 minutes, you should see the Pool indicate it is scaling from 0-4 nodes. At this point, the pool will begin provisioning the VMs. The time this takes depends on when the Auto-scale rule is re-evaluated.
 
-    ![Pool scaling information indicates it is caling from zero to four nodes.](media/image71.png "Pool scaling information")
+    ![Pool scaling information indicates it is scaling from zero to four nodes.](media/image71.png "Pool scaling information")
 
 6. Within a minute or so, four nodes appear in the transitions of starting:
 
     ![In the Graphs section, four empty boxes are reported as the starting transition states.](media/image72.png "Graphs section")
 
-7. Once the VM nodes are provisioned, you should see them being setup as they are in the waitingforstarttask state.
+7. Once the VM nodes are provisioned, you should see them being setup as they are in the `waitingforstarttask` state.
 
     ![In the Graphs section, the same four empty boxes are now reported as waitingforstarttask.](media/image73.png "Graphs section")
 
-8. In a minute or so after that, the VM nodes will be ready and will begin running the tasks. You may see them flash thru the idle state before running.
+8. A minute or so after that, the VM nodes will be ready and will begin running the tasks. You may see them flash thru the idle state before running.
 
     ![In the Graphs section, the same four boxes are now reported as running.](media/image74.png "Graphs section")
 
@@ -998,15 +992,15 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
     ![In the Graphs section, two of the boxes are reported as running, and the other two are reported as idle.](media/image75.png "Graphs section")
 
-10. When all tasks have completed, all 4 nodes will display an idle status. Since there are no more tasks queued, now they are basically waiting for the Auto Scaling rule to be re-evaluated.
+10. When all tasks have completed, all 4 nodes will display an idle status. Since there are no more tasks queued, now they are basically waiting for the Auto-scaling rule to be re-evaluated.
 
     ![In the Graphs section, all four of the boxes are reported as idle.](media/image76.png "Graphs section")
 
-11. Once the Auto scaling rule has been re-evaluated, which can take up to 5 minutes to occur, the pools is re-configured to scale from 4 nodes down to 1 node. The nodes selected to be removed from the pool have the state leavingpool.
+11. Once the Auto-scaling rule has been re-evaluated, which can take up to 5 minutes to occur, the pools is re-configured to scale from 4 nodes down to 1 node. The nodes selected to be removed from the pool have the state `leavingpool`.
 
     ![In the Graphs section, three of the boxes are reported as leaving pool, and the fourth one is reported as idle.](media/image77.png "Graphs section")
 
-12. On the next evaluation of the Auto scaling rule, the Pool will resize from 1 to 0.
+12. On the next evaluation of the Auto-scaling rule, the Pool will resize from 1 to 0.
 
     ![In the Graphs section, one box displays, and is reported as leaving pool.](media/image78.png "Graphs section")
 
@@ -1014,7 +1008,7 @@ We had to enable Auto scale using the portal, but we can also edit the Auto scal
 
     ![This time, the Graphs section has no nodes.](media/image79.png "Graphs section")
 
-14. If you were patient to sit thru this evaluation of the auto scale rules, hopefully your patience was rewarded as you witnessed a Batch Pool scale up from 0 nodes, to 4 nodes, process the queued tasks and then gradually scale back down to 0 nodes. All of this without any input from you.
+14. If you were patient to sit thru this evaluation of the auto-scale rules, hopefully your patience was rewarded as you witnessed a Batch Pool scale up from 0 nodes to 4 nodes, process the queued tasks and then gradually scale back down to 0 nodes. All of this without any input from you.
 
 ## Exercise 5: 3D Rendering with the Batch Rending Service
 
