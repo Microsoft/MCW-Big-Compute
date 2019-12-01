@@ -258,7 +258,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 Duration: 60 minutes
 
-In this exercise, you will resample video files in a scale-out way by using Azure Batch. While there are multiple ways to accomplish this in Azure Batch, in this exercise you will use Batch templates and files, which enable you to perform scale-out execution of command line executables (in this case FFmpeg) without having to write any code.
+In this exercise, you resample video files in a scale-out way by using Azure Batch. While there are multiple ways to accomplish this in Azure Batch, in this exercise you use Batch templates and files, which enable you to perform scale-out execution of command-line executables (in this case FFmpeg) without having to write any code.
 
 ### Task 1: Connect to Azure Batch with Batch Explorer
 
@@ -271,14 +271,11 @@ In this exercise, you will resample video files in a scale-out way by using Azur
 3. Take a moment to familiarize yourself with the dashboard overview for your Batch Account. Clockwise from the top-left:
 
     - The name, account endpoint and subscription in which your Batch Account live.
-
     - Pool usage, Job Quota and core usage (for both dedicated cores and low-priority cores).
-
     - The Storage account linked with your Batch Account.
-
     - App Packages, Pool Status and Job Status are empty as this Batch Account does not have any of these resources at the moment.
 
-        ![the Batch Explorer dashboard displays with the previously mentioned sections empty.](media/image34.png "Batch Explorer dashboard")
+    ![the Batch Explorer dashboard displays with the previously mentioned sections empty.](media/image34.png "Batch Explorer dashboard")
 
 4. Keep Batch Explorer open and continue on to the next task.
 
@@ -330,7 +327,7 @@ In this exercise, you will resample video files in a scale-out way by using Azur
 
 7. You will see a prompt similar to the following in the SSH terminal:
 
-    ```
+    ```http
     To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code BDQGEJR7V to authenticate.
     ```
 
@@ -493,45 +490,49 @@ An Azure Batch Pool Template enables an experienced Batch user to provide a simp
 
 The first step in building a Batch Job is understanding the command line of the tool you want to execute when the task runs. In this case we want to run ffmpeg. In this task, you will become familiar with the command line for ffmpeg and then you will create a Job template that describes to Azure Batch how to invoke ffmpeg to resample each of the videos that were uploaded.
 
-You can install ffmpeg using the apt-get package manager available within Ubuntu Linux. 
+You can install ffmpeg using the apt-get package manager available within Ubuntu Linux.
 
-1.  In the SSM session, run the following command to do so:
+1. In the SSH session, run the following command to do so:
 
     ```bash
     sudo apt-get install -y ffmpeg
     ```
 
-3. The general syntax of ffmpeg looks as follows:
+    > **Note**: The installation of ffmpeg takes a few minutes to complete.
+
+2. The general syntax of ffmpeg looks as follows:
 
     ```bash
     ffmpeg \[options\] \[\[infile options\] -i infile\]\... {\[outfile options\] outfile}\...
     ```
 
-4. Next, resample one of the MP4 files found within the sample's directory using ffmpeg. We use the -s option to indicate the desired width and height, followed by the strict option which allows the selection of the native FFmpeg AAC encoder:
+3. Next, resample one of the MP4 files found within the sample's directory using ffmpeg. We use the -s option to indicate the desired width and height, followed by the strict option which allows the selection of the native FFmpeg AAC encoder:
 
     ```bash
     ffmpeg -i big_buck_bunny_720p_30mb.mp4 -y -s "428x240" -strict -2 output.mp4
     ```
 
-5. Within a minute or so the resampled video should be ready. Run the following command and verify that you have an output.mp4. How does the size of this file compare to the other MP4 files in this directory?
+4. Within a minute or so the resampled video should be ready. Run the following command and verify that you have an output.mp4 file listed in the output. How does the size of this file compare to the other MP4 files in this directory?
 
     ```bash
     ls -hl
     ```
 
-6. Delete the output file before proceeding, since we were just testing out the FFmpeg command:
+    ![The output of the ls -hl command is displayed, with the output.mp4 file highlighted in the output. The output.mp4 file has a size of 12M compared to the other files, which have a size of 31M.](media/ls-command-output.png "SSH command output")
+
+5. Delete the output file before proceeding, since we were just testing out the FFmpeg command:
 
     ```bash
     rm output.mp4
     ```
 
-7. Now that you understand the command line we want to run across our nodes in Batch, let's turn it into a Template that enables us to parameterize it so it doesn't run against just one file, but all the files in the input File Group. Within your SSH session, create a new JSON file called job.json by running the following command:
+6. Now that you understand the command line we want to run across our nodes in Batch, let's turn it into a Template that enables us to parameterize it so it doesn't run against just one file, but all the files in the input File Group. Within your SSH session, create a new JSON file called job.json by running the following command:
 
     ```bash
     nano job.json
     ```
 
-8. Copy and paste the following complete job template:
+7. Copy and paste the following complete job template:
 
     ```json
     {
@@ -574,7 +575,7 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
                 },
                 "taskFactory": {
                     "type": "taskPerFile",
-                    "source": { 
+                    "source": {
                         "fileGroup": "ffmpeg-input"
                     },
                     "repeatTask": {
@@ -607,7 +608,7 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
     }
     ```
 
-9. Take a moment to understand what this template does (you can find complete documentation on the template syntax at <https://github.com/Azure/azure-batch-cli-extensions/tree/master/doc>). Let's begin with the parameters object. Similar to the parameters object created for the Pool template, this object enables you to expose the parameters that the user needs to provide when running the Job. Notice that in this case, we require a poolId and a jobID as before. However, this template also supports a resolution parameter and uses the default value of "428x240" if the user does not supply a target resolution.
+8. Take a moment to understand what this template does (you can find complete documentation on the template syntax at <https://github.com/Azure/azure-batch-cli-extensions/tree/master/doc>). Let's begin with the parameters object. Similar to the parameters object created for the Pool template, this object enables you to expose the parameters that the user needs to provide when running the Job. Notice that in this case, we require a poolId and a jobID as before. However, this template also supports a resolution parameter and uses the default value of "428x240" if the user does not supply a target resolution.
 
     ```json
         "parameters": {
@@ -636,7 +637,7 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
             }
     ```
 
-10. Next, examine the job object. The type is specified as the Microsoft.Batch/batchAccounts/jobs type. Looking within the properties object, observe that the first two child objects are id (for the ID used to identify the job itself) and constraints. The constraints are set so that the job will run for at most 5 hours and will be try only once.
+9. Next, examine the job object. The type is specified as the Microsoft.Batch/batchAccounts/jobs type. Looking within the properties object, observe that the first two child objects are id (for the ID used to identify the job itself) and constraints. The constraints are set so that the job will run for at most 5 hours and will be try only once.
 
     ```json
     "job": {
@@ -650,7 +651,7 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
                 },
     ```
 
-11. Next, the poolInfo object identifies the Pool within which this Job will run, using the Pool ID supplied as a parameter.
+10. Next, the poolInfo object identifies the Pool within which this Job will run, using the Pool ID supplied as a parameter.
 
     ```json
                 "poolInfo": {
@@ -658,12 +659,12 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
                 },
     ```
 
-12. Next comes the crux of the template, the taskFactory object. A task factory saves you from having to write code that iterates over inputs to dynamically create templates that describe each task. In the below, the taskFactory is configured as a type of "taskPerFile" which means it will spawn one task for each input MP4 file in the source (which is the input File Group ffmpeg-input). The repeatTask object specifies the parameterized command line for running FFmpeg, where the file names are effectively provided by the task factory as it iterates over each input coming from blobs stored in the Azure Storage account linked to the Batch account. When the task runs, one file will be downloaded from Azure Storage on to the local storage of the local node. Then this file is processed with FFmpeg. The outputFiles object tells the task to copy the files from the local node back to Azure Storage when the task has completed successfully.
+11. Next comes the crux of the template, the taskFactory object. A task factory saves you from having to write code that iterates over inputs to dynamically create templates that describe each task. In the below, the taskFactory is configured as a type of "taskPerFile" which means it will spawn one task for each input MP4 file in the source (which is the input File Group ffmpeg-input). The repeatTask object specifies the parameterized command line for running FFmpeg, where the file names are effectively provided by the task factory as it iterates over each input coming from blobs stored in the Azure Storage account linked to the Batch account. When the task runs, one file will be downloaded from Azure Storage on to the local storage of the local node. Then this file is processed with FFmpeg. The outputFiles object tells the task to copy the files from the local node back to Azure Storage when the task has completed successfully.
 
     ```json
                 "taskFactory": {
                     "type": "taskPerFile",
-                    "source": { 
+                    "source": {
                         "fileGroup": "ffmpeg-input"
                     },
                     "repeatTask": {
@@ -692,9 +693,9 @@ You can install ffmpeg using the apt-get package manager available within Ubuntu
                 },
     ```
 
-13. Save the JSON file by selecting Write Out by typing Control + O followed by Enter to leave the name set to job.json. Use Control + X to quit nano.
+12. Save the JSON file by selecting Write Out by typing Control + O followed by Enter to leave the name set to job.json. Use Control + X to quit nano.
 
-14. The template for the job is now ready for use by an end user.
+13. The template for the job is now ready for use by an end user.
 
 ## Exercise 3: Running a Batch Job
 
@@ -713,13 +714,14 @@ In this task, pretend you are switching roles and are now the end user who has b
     ```bash
     sudo az batch pool create --template pool.json --account-name batchAccountName --account-endpoint batchAccountName.batchAccountLocation.batch.azure.com
     ```
-    >**Note**: If you get an error running the above command along the lines of **'float' object cannot be interpreted as an integer**, follow these steps:
+
+    > **Note**: If you get an error running the above command along the lines of **'float' object cannot be interpreted as an integer**, follow these steps:
 
     - Use nano to edit this file:
         `nano /home/zoinertejada/.azure/cliextensions/azure-batch-cli-extensions/azext/batch/operations/task_operations.py`
-        
+
     - Use Control + _  (control and underscore requires using the shift key), type 274 and press enter to go to line 274.
-    
+
     - Replace the line:
 
         if threads and threads > 0:
@@ -729,7 +731,7 @@ In this task, pretend you are switching roles and are now the end user who has b
         if threads and threads >= 1:
 
     - Select Control + O to save the changes, then control + x to exit nano.
-    
+
     - Retry the az batch pool create command as before.
 
 3. The command will prompt you for the values to use for the parameters, including the poolId and nodeCount. Provide these as follows:
