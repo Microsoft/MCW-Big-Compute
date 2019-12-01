@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-August 2019
+November 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,31 +26,31 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Trainer information](#Trainer-information)
-  - [Role of the trainer](#Role-of-the-trainer)
-  - [Whiteboard design session flow](#Whiteboard-design-session-flow)
-  - [Before the whiteboard design session: How to prepare](#Before-the-whiteboard-design-session-How-to-prepare)
-  - [During the whiteboard design session: Tips for an effective whiteboard design session](#During-the-whiteboard-design-session-Tips-for-an-effective-whiteboard-design-session)
-- [High Performance Computing whiteboard design session student guide](#High-performance-computing-whiteboard-design-session-student-guide)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study)
-    - [Customer situation](#Customer-situation)
-    - [Customer needs](#Customer-needs)
-    - [Customer objections](#Customer-objections)
-    - [Infographic for common scenarios](#Infographic-for-common-scenarios)
-  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#Step-3-Present-the-solution)
-  - [Wrap-up](#Wrap-up)
-  - [Additional references](#Additional-references)
-- [High Performance Computing whiteboard design session trainer guide](#High-performance-computing-whiteboard-design-session-trainer-guide)
-  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study-1)
-  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution-1)
-  - [Step 3: Present the solution](#Step-3-Present-the-solution-1)
-  - [Wrap-up](#Wrap-up-1)
-  - [Preferred target audience](#Preferred-target-audience)
-  - [Preferred solution](#Preferred-solution)
-  - [Checklist of preferred objection handling](#Checklist-of-preferred-objection-handling)
-  - [Customer quote (to be read back to the attendees at the end)](#Customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [High Performance Computing whiteboard design session student guide](#high-performance-computing-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [High Performance Computing whiteboard design session trainer guide](#high-performance-computing-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
 
 <!-- /TOC -->
 
@@ -172,7 +172,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 In this whiteboard design session, you will work with a group to design a scale-out media processing solution using High Performance Computing (HPC) techniques in Azure.
 
-At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to effectively manage and monitor these solutions to ensure predictable outcomes.
+At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to manage and monitor these solutions to ensure predictable outcomes effectively.
 
 ## Step 1: Review the customer case study
 
@@ -196,19 +196,19 @@ ThoughtRender provides image and video processing services to many industries; m
 
 ThoughtRender currently operates their own, on-premises services, with their own on-premises HPC clusters and other IT infrastructure, but their success has led to challenges in terms of their growth, and ability to scale to new jobs, and new industries. They are curious about cloud and think that not only could it help them scale, but help them improve costs and pass savings to customers, address the seasonality of rendering demand (by only paying for resources when actually used) and to take advantage of new technologies, such as the latest GPUs.
 
-Customers often ask questions like, "Could you get that job processed this week, instead of in 3 weeks' time?" ThoughtRender thinks that perhaps bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
+Customers often ask questions like, "Could you get that job processed this week, instead of in 3 weeks?" ThoughtRender thinks that perhaps bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
 
 They also want to consider how to integrate with their on-premises infrastructure and operating model. They have three large on-premises HPC clusters, one in each site, in London, New York, and Singapore. They also have labs in each site that provide high-end visualization workstations for quality control, mostly operated by internal staff, but sometimes together with customers. ThoughtRender have 3 petabytes (PB) of data (customer assets and working "scratch" data shares), 1 PB typically stored per site.
 
-Thomas Pix, CIO of ThoughtRender is looking to modernize their story. He would love to understand how to tap into the \"power of the cloud\" to be more flexible to customer demands, but also to consider new ways of working. Lots of data is generated via their on-premises HPC clusters, which also spends a lot of time moving between sites. He would love to see if they can move this data away from their on-premises datacenter into the cloud, and enhance their ability to load, process, and analyze it going forward. Given his long-standing relationship with Microsoft, he would like to see if Azure can meet his needs.
+Thomas Pix, CIO of ThoughtRender, is looking to modernize their story. He would love to understand how to tap into the \"power of the cloud\" to be more flexible to customer demands, but also to consider new ways of working. Lots of data is generated via their on-premises HPC clusters, which also spends a lot of time moving between sites. He would love to see if they can move this data away from their on-premises datacenter into the cloud and enhance their ability to load, process, and analyze it going forward. Given his long-standing relationship with Microsoft, he would like to see if Azure can meet his needs.
 
 ### Customer needs
 
 1. Want to be able to provide better flexibility to their customer demands (i.e., to have more work processed, or to complete work in a faster time).
 
-2. Want to investigate potential advantages to using cloud (e.g., latest technologies, bursting capability, cost savings).
+2. Want to investigate potential advantages to using the cloud (e.g., latest technologies, bursting capability, cost savings).
 
-3. Want to integrate with their on-premises systems where possible (e.g., to burst to cloud for additional capacity).
+3. Want to integrate with their on-premises systems where possible (e.g., to burst to the cloud for additional capacity).
 
 4. Want to collaborate and visualize the results of their work, on their own, or together with customers.
 
@@ -222,7 +222,7 @@ Thomas Pix, CIO of ThoughtRender is looking to modernize their story. He would l
 
 4. We have petabytes of data on-premises. It would cost us a fortune and take ages to move this to the cloud!
 
-5. We heard collaboration is possible for 3D imaging workstations, but we have very specific color requirements and buy top-end workstation equipment for our users. Our users just wouldn\'t get the interaction performance they require with something \"remote\" in the cloud.
+5. We heard that collaboration is possible for 3D imaging workstations, but we have very specific color requirements and buy top-end workstation equipment for our users. Our users just wouldn\'t get the interaction performance they require with something \"remote\" in the cloud.
 
 6. Will this take jobs away from our IT system administrators and HPC engineers?
 
@@ -292,14 +292,13 @@ _Batch Computing_
 
 9. What sort of performance will be required from this storage?
 
-10.  Will this data need to be backed up or archived?
+10. Will this data need to be backed up or archived?
 
 _Operationalizing and Integrating_
 
 1. Is it possible for ThoughtRender to connect their Batch Rendering workloads in Azure, to their Rendering workloads on-premises, in their various sites? If so, will the connection be made at a networking level, an operating system level, or an application level?
 
 2. Is it possible for ThoughtRender to keep their Azure infrastructure separate (i.e., completely unconnected) to their on-premises HPC clusters?
-
 
 _Visualization and Remote Workstations_
 
@@ -319,11 +318,11 @@ _Visualization and Remote Workstations_
 
 Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution.
+1. Identify any customer needs that are not addressed with the proposed solution.
 
-2.  Identify the benefits of your solution.
+2. Identify the benefits of your solution.
 
-3.  Determine how you will respond to the customer's objections.
+3. Determine how you will respond to the customer's objections.
 
 Prepare a 15-minute chalk-talk style presentation to the customer.
 
@@ -430,9 +429,9 @@ The following projects may be helpful to you after completing the workshop in un
 
 Thomas Pix, CIO of ThoughtRender.
 
-The primary audience is business decision makers and technology decision makers. Usually, we talk to the Infrastructure Managers who report to the CIOs, or to application sponsors (like a VP LOB, CMO) or to those that represent the Business Unit IT or engineers who report to the application sponsors.
+The primary audience is business and technology decision-makers. Usually, we talk to the Infrastructure Managers who report to the CIOs, or application sponsors (like a VP LOB, CMO) or to those that represent the Business Unit IT or engineers who report to the application sponsors.
 
-These workload solutions often interact with the technical team but often also need the buy in of marketing, engineering, product design and in the case of media and entertainment, the studio.
+These workload solutions often interact with the technical team but often also need the buy-in of marketing, engineering, product design, and in the case of media and entertainment, the studio.
 
 ## Preferred solution
 
@@ -440,17 +439,17 @@ _High-level architecture_
 
 1. Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for data loading, data preparation, storage, machine learning modeling, and reporting. You will refine this diagram as you proceed.
 
-    After speaking with its supportive team at Microsoft, ThoughtRender decided that Azure would, in fact, be the right choice for their platform. They decided to load data into blob storage; explore and prepare it using StorageExplorer and Azure CLI; execute their compute workload with Azure Batch; consider integrations with existing tools and apps their rendering users already have; and visualize and collaborate on remote workstations using Azure NV compute instances, with optional software from third-party providers.
+    After speaking with its support team at Microsoft, ThoughtRender decided that Azure would be the right choice for their platform. They decided to load data into blob storage; explore and prepare it using StorageExplorer and Azure CLI; execute their compute workload with Azure Batch; consider integrations with existing tools and apps their rendering users already have; and visualize and collaborate on remote workstations using Azure NV compute instances, with optional software from third-party providers.
 
-![In the Preferred solution diagram Data upload to Azure utilizes Azure CLI and Azure StorageExplorer. Azure Batch Compute includes Azure Storage, and Data Output / Visualization has a NV Workstation.](media/solution-architecture-diagram.png "Preferred solution diagram")
+![In the Preferred solution diagram Data upload to Azure utilizes Azure CLI and Azure StorageExplorer. Azure Batch Compute includes Azure Storage, and Data Output / Visualization has an NV Workstation.](media/solution-architecture-diagram.png "Preferred solution diagram")
 
-**>Note**: The preferred solution is only one of many possible, viable approaches.
+> **Note**: The preferred solution is only one of many possible, viable approaches.
 
 _Data loading_
 
 1. How would you recommend ThoughtRender get their data into (and out of) Azure? What services would you suggest and what are the specific steps they would need to take to prepare the data, to transfer the data, and where would the loaded data land?
 
-    ThoughtRender should consider using the Microsoft Azure Import/Export service, or the Azure Data Box. Data will be loaded on-premises at ThoughtRender to hard drives provided by either service. These hard drives will then be sent to chosen/agreed Microsoft Azure datacenters, and data loaded directly to the customer\'s Azure tenant, typically into a Blob storage account. No special preparation of the data may be required, other than whatever file structure may facilitate the customer\'s workflow easiest in Azure (e.g., input and output folders).
+    ThoughtRender should consider using the Microsoft Azure Import/Export service, or the Azure Data Box. Data will be loaded on-premises at ThoughtRender to hard drives provided by either service. These hard drives will then be sent to chosen/agreed Microsoft Azure datacenters and data loaded directly to the customer\'s Azure tenant, typically into a Blob storage account. No special preparation of the data may be required, other than whatever file structure may facilitate the customer\'s workflow easiest in Azure (e.g., input and output folders).
 
 _Video and Image Processing_
 
@@ -464,9 +463,9 @@ _Video and Image Processing_
 
 3. When are these tools used at ThoughtRender? Are they part of a workflow?
 
-    Typically, all of these software tools are used as part of a \"workflow\" at the company (i.e., from idea to finished project), and it is important to know at which part of the workflow the tool is used, and how this may fit with other applications. This may be important, for example, for understanding data transfer/flow. The output from one application may need to be stored on storage which is shared, to be used as input for another application. A typical Video Production pipeline (including some typical software tools) is as in the following diagram:
+    Typically, all of these software tools are used as part of a \"workflow\" at the company (i.e., from idea to finished project), and it is important to know at which part of the workflow the tool is used, and how this may fit with other applications. This may be important, for example, for understanding data transfer/flow. The output from one application may need to be stored on storage, which is shared, to be used as input for another application. A typical Video Production pipeline (including some typical software tools) is as in the following diagram:
 
-![The Typical Production pipeline diagram is broken into Pre-production, production, and post-production. Pre-production includes concept, script, storyboard, animatic design, special effects, and 3-D layout. Production includes modelling, animation, and shading and lighting. and rendering. post-production includes compositing, post-processing, and output to media.](media/image4.png "Typical Production pipeline diagram")
+![The Typical Production pipeline diagram is broken into Pre-production, production, and post-production. Pre-production includes concept, script, storyboard, animatic design, special effects, and 3-D layout. Production includes modeling, animation, and shading and lighting, and rendering. Post-production includes compositing, post-processing, and output to media.](media/image4.png "Typical Production pipeline diagram")
 
 _Batch Computing_
 
@@ -492,7 +491,7 @@ _Batch Computing_
 
 6. How will this data be used at the beginning, middle, and end of a compute workload?
 
-    Typically, initial input data may first be made available on a file share (e.g. SMB). Compute nodes, during a compute workload, may copy this data to local disk, and then process against local disk during the workload. At the end of the workload, the resulting data (or changed data) can be saved back to the same initial file share, or an alternative file share. It is always a good idea to double-check details of the exact workload during design.
+    Typically, initial input data may first be made available on a file share (e.g., SMB). Compute nodes, during a compute workload, may copy this data to local disk, and then process against local disk during the workload. At the end of the workload, the resulting data (or changed data) can be saved back to the same initial file share, or an alternative file share. It is always a good idea to double-check details of the exact workload during design.
 
 7. Where will this data be stored?
 
@@ -500,7 +499,7 @@ _Batch Computing_
 
 8. Will this data be stored on compute instances during a batch run? Would you store data on each compute node working in a batch, or would you store data in a shared area?
 
-    The answer depends on the workload. For compute rendering, it may be best to storage the data in a shared area (i.e., parallel filesystem or SMB storage share). For image processing, data during a batch run may be OK to be stored on local SSD disk attached to the compute nodes -- used only for the duration of the batch workload.
+    The answer depends on the workload. For compute rendering, it may be best to store the data in a shared area (i.e., parallel filesystem or SMB storage share). For image processing, data during a batch run may be OK to be stored on local SSD disk attached to the compute nodes -- used only for the duration of the batch workload.
 
 9. What sort of performance will be required from this storage?
 
@@ -514,7 +513,7 @@ _Operationalizing and Integrating_
 
 1. Is it possible for ThoughtRender to connect their Batch Rendering workloads in Azure, to their Rendering workloads on-premises, in their various sites? If so, will the connection be made at a networking level, an operating system level, or an application level?
 
-    Yes, typically this is possible. The connection is typically made at the application level (assuming a network connection such as VPN is already in place). Check what type of HPC compute cluster that ThoughtRender uses on-premises, and check the scheduling and batch software they use on those systems. Some of this software (e.g., HPC Pack, IBM LSF, Slurm, Univa GridEngine) have integrations possible with Azure to allow \"bursting\" (i.e., keeping head node control on-premises, and sending compute jobs to compute nodes running on Azure -- basically extending the on-premises HPC cluster into the cloud).
+    Yes, typically, this is possible. The connection is typically made at the application level (assuming a network connection such as VPN is already in place). Check what type of HPC compute cluster that ThoughtRender uses on-premises, and check the scheduling and batch software they use on those systems. Some of these software (e.g., HPC Pack, IBM LSF, Slurm, Univa GridEngine) have integrations possible with Azure to allow \"bursting\" (i.e., keeping head node control on-premises, and sending compute jobs to compute nodes running on Azure -- basically extending the on-premises HPC cluster into the cloud).
 
 2. Is it possible for ThoughtRender to keep their Azure infrastructure separate (i.e., completely unconnected) to their on-premises HPC clusters?
 
@@ -528,11 +527,11 @@ _Visualization and Remote Workstations_
 
 2. Is a special type of software required for client access? Could users simply use remote desktop? Would this perform the way ThoughtRender (or their customers) would like it to?
 
-    This depends on the applications and users involved. But typically, for \"high end\" workstation users (i.e., who may already use high powered workstations with GPUs installed), specialized software is needed for best performing remote desktop technology. Example: for interacting with 3D models in a performant way, a \"low latency\" is needed for usable interaction. Partner solution software and technology in this space includes Teradici and Citrix HDX. This software has already been proven in such scenarios for other customers. Teradici uses \"PCoIP\" (PC over IP) technology, which sends only \"changed\" pixels between workstation and display. A physical thin client connected to large monitors, or a software client installed on, e.g., a laptop connected to large monitors, can be used as a remote desktop client.
+    This depends on the applications and users involved. But typically, for \"high end\" workstation users (i.e., who may already use high powered workstations with GPUs installed), specialized software is needed for best performing remote desktop technology. Example: for interacting with 3D models in a performant way, a \"low latency\" is needed for usable interaction. Partner solution software and technology in this space includes Teradici and Citrix HDX. This software has already been proven in such scenarios for other customers. Teradici uses \"PCoIP\" (PC over IP) technology, which sends only \"changed\" pixels between workstation and display. A physical thin client connected to large monitors, or a software client installed on, e.g., a laptop connected to large monitors can be used as a remote desktop client.
 
 3. Would it be secure?
 
-    Yes, Teradici PCoIP technology sends only "changed" pixels from workstation to display, and encrypts the pixels during transfer.
+    Yes, Teradici PCoIP technology sends only "changed" pixels from the workstation to display, and encrypts the pixels during transfer.
 
 4. Would it be color correct?
 
@@ -562,7 +561,7 @@ _Visualization and Remote Workstations_
 
 4. We have petabytes of data on-premises. It would cost us a fortune and take ages to move this to the cloud!
 
-    Yes, this can pose an issue. However, there are various methods of transferring data. In the first instance, if copying data over a standard Internet connection does not perform (e.g., direct or with VPN), a dedicated connection to Azure (ExpressRoute) may help. Secondly, optimized tools exist for transferring data with huge performance improvements. This includes Azcopy (an open source tool from Microsoft), or commercial tools such as Signiant, Aspera, or FileCatalyst. These tools in combination with dedicated connections may provide fast enough alternatives in given time frames. Thirdly, dedicated services exist for bulk transfers of large data, such as the Azure Data Box. This involves shipping hard drives of data from your data center, to Microsoft data centers. Finally, if it is possible to start with the data in Azure, then the cost of moving is substantially reduced, and perhaps this may be possible for new projects starting from scratch (and, e.g., for old projects to remain on-premises).
+    Yes, this can pose an issue. However, there are various methods of transferring data. In the first instance, if copying data over a standard Internet connection does not perform (e.g., direct or with VPN), a dedicated connection to Azure (ExpressRoute) may help. Secondly, optimized tools exist for transferring data with huge performance improvements. This includes AzCopy (an open source tool from Microsoft), or commercial tools such as Signiant, Aspera, or FileCatalyst. These tools, in combination with dedicated connections, may provide fast enough alternatives in given time frames. Thirdly, dedicated services exist for bulk transfers of large data, such as the Azure Data Box. This involves shipping hard drives of data from your data center to Microsoft data centers. Finally, if it is possible to start with the data in Azure, then the cost of moving is substantially reduced, and perhaps this may be possible for new projects starting from scratch (and, e.g., for old projects to remain on-premises).
 
 5. We heard collaboration is possible for 3D imaging workstations. But we have very specific color requirements and buy top-end workstation equipment for our users. Our users just wouldn't get the interaction performance they require with something \"remote\" in the cloud.
 
