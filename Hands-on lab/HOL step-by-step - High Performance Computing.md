@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-August 2019
+November 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,33 +26,33 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [High Performance Computing hands-on lab step-by-step](#High-performance-computing-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Provision Batch Environment](#Exercise-1-Provision-Batch-Environment)
-    - [Task 1: Setup a Linux Jump Box](#Task-1-Setup-a-Linux-Jump-Box)
-    - [Task 2: Install the Azure CLI and Azure Batch Extensions](#Task-2-Install-the-Azure-CLI-and-Azure-Batch-Extensions)
-    - [Task 3: Provision Azure Batch](#Task-3-Provision-Azure-Batch)
-  - [Exercise 2: Creating Batch CLI templates and files](#Exercise-2-Creating-Batch-CLI-templates-and-files)
-    - [Task 1: Connect to Azure Batch with Batch Explorer](#Task-1-Connect-to-Azure-Batch-with-Batch-Explorer)
-    - [Task 2: Stage the sample videos to process](#Task-2-Stage-the-sample-videos-to-process)
-    - [Task 3: Verify video uploads](#Task-3-Verify-video-uploads)
-    - [Task 4: Create an Azure Batch Pool Template](#Task-4-Create-an-Azure-Batch-Pool-Template)
-    - [Task 5: Create an Azure Batch Job Template](#Task-5-Create-an-Azure-Batch-Job-Template)
-  - [Exercise 3: Running a Batch Job](#Exercise-3-Running-a-Batch-Job)
-    - [Task 1: Create a Pool using the Azure Batch Pool Template](#Task-1-Create-a-Pool-using-the-Azure-Batch-Pool-Template)
-    - [Task 2: Create and Run a Job using the Azure Batch Job Template](#Task-2-Create-and-Run-a-Job-using-the-Azure-Batch-Job-Template)
-  - [Exercise 4: Scaling a Pool](#Exercise-4-Scaling-a-Pool)
-    - [Task 1: Enable Autoscale on the Pool](#Task-1-Enable-Autoscale-on-the-Pool)
-    - [Task 2: Apply an Autoscale Formula](#Task-2-Apply-an-Autoscale-Formula)
-    - [Task 3: Trigger and observe Autoscale](#Task-3-Trigger-and-observe-Autoscale)
-  - [Exercise 5: 3D Rendering with the Batch Rending Service](#Exercise-5-3D-Rendering-with-the-Batch-Rending-Service)
-    - [Task 1: Create the File Groups](#Task-1-Create-the-File-Groups)
-    - [Task 2: Render a 3ds Max Scene](#Task-2-Render-a-3ds-Max-Scene)
-  - [After the hands-on lab](#After-the-hands-on-lab)
-    - [Task 1: Cleanup the Lab Resource Group](#Task-1-Cleanup-the-Lab-Resource-Group)
+- [High Performance Computing hands-on lab step-by-step](#high-performance-computing-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Provision Batch Environment](#exercise-1-provision-batch-environment)
+    - [Task 1: Setup a Linux Jump Box](#task-1-setup-a-linux-jump-box)
+    - [Task 2: Install the Azure CLI and Azure Batch Extensions](#task-2-install-the-azure-cli-and-azure-batch-extensions)
+    - [Task 3: Provision Azure Batch](#task-3-provision-azure-batch)
+  - [Exercise 2: Creating Batch CLI templates and files](#exercise-2-creating-batch-cli-templates-and-files)
+    - [Task 1: Connect to Azure Batch with Batch Explorer](#task-1-connect-to-azure-batch-with-batch-explorer)
+    - [Task 2: Stage the sample videos to process](#task-2-stage-the-sample-videos-to-process)
+    - [Task 3: Verify video uploads](#task-3-verify-video-uploads)
+    - [Task 4: Create an Azure Batch Pool Template](#task-4-create-an-azure-batch-pool-template)
+    - [Task 5: Create an Azure Batch Job Template](#task-5-create-an-azure-batch-job-template)
+  - [Exercise 3: Running a Batch Job](#exercise-3-running-a-batch-job)
+    - [Task 1: Create a Pool using the Azure Batch Pool Template](#task-1-create-a-pool-using-the-azure-batch-pool-template)
+    - [Task 2: Create and Run a Job using the Azure Batch Job Template](#task-2-create-and-run-a-job-using-the-azure-batch-job-template)
+  - [Exercise 4: Scaling a Pool](#exercise-4-scaling-a-pool)
+    - [Task 1: Enable Autoscale on the Pool](#task-1-enable-autoscale-on-the-pool)
+    - [Task 2: Apply an Autoscale Formula](#task-2-apply-an-autoscale-formula)
+    - [Task 3: Trigger and observe Autoscale](#task-3-trigger-and-observe-autoscale)
+  - [Exercise 5: 3D Rendering with the Batch Rending Service](#exercise-5-3d-rendering-with-the-batch-rending-service)
+    - [Task 1: Create the File Groups](#task-1-create-the-file-groups)
+    - [Task 2: Render a 3ds Max Scene](#task-2-render-a-3ds-max-scene)
+  - [After the hands-on lab](#after-the-hands-on-lab)
+    - [Task 1: Cleanup the Lab Resource Group](#task-1-cleanup-the-lab-resource-group)
 
 <!-- /TOC -->
 
@@ -62,7 +62,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 In this hands-on lab, you will implement High Performance Computing (HPC) workloads targeted at 3D rendering and media processing in Azure using Azure Batch and Azure Storage.
 
-At the end of this hands-on lab, you will be better able to deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. You will be able to configure the pool of VMs to run the FFmpeg app to process videos across the VM nodes in the pool. You will be able to do this using Batch templates and files, which enable you to perform scale-out execution of command line executables (in this case FFmpeg) without having to write any code.
+At the end of this hands-on lab, you will be better able to deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. You will be able to configure the pool of VMs to run the FFmpeg app to process videos across the VM nodes in the pool. You will be able to do this using Batch templates and files, which enable you to perform scale-out execution of command-line executables (in this case FFmpeg) without having to write any code.
 
 ## Overview
 
@@ -74,7 +74,7 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
 ![In this Solution architecture diagram, Batch Explorer has a bi-directional arrow pointing to Batch, which has a bi-directional arrow pointing to a Pool made up of Virtual Machines (FFmpeg). The pool has bi-directional arrows pointing to Storage.](media/solution-architecture-diagram.png "Solution architecture diagram")
 
-In this lab, you deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. The Pool of VMs is configured to run the FFmpeg app to process videos across the VM nodes in the pool. This is done using Batch templates and files, which enable you to perform scale-out execution of command line executables (in this case FFmpeg) without having to write any code. You can use Azure Batch Explorer or the Azure CLI to manage and monitor jobs executing in the Pool.
+In this lab, you deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. The pool of VMs is configured to run the FFmpeg app to process videos across the VM nodes in the pool. This is done using Batch templates and files, which enable you to perform scale-out execution of command-line executables (in this case FFmpeg) without having to write any code. You can use Azure Batch Explorer or the Azure CLI to manage and monitor jobs executing in the pool.
 
 ## Requirements
 
@@ -89,72 +89,65 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 ### Task 1: Setup a Linux Jump Box
 
-1. Using a browser, navigate to the [Azure Portal](https://portal.azure.com).
+1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
-2. Select **+ Create a resource** from the left-hand navigation menu.
+    ![The Show portal menu icon is highlighted, and the portal menu is displayed. Create a resource is highlighted in the portal menu.](media/create-a-resource.png "Create a resource")
 
-    ![Azure Create a resource icon](media/create-resource.png "Azure Create a resource icon")
-
-3. In the Search the Marketplace text box, type **Ubuntu Server 18.04 LTS** and select the same in the drop-down list that appears.
+2. In the Search the Marketplace text box, type **Ubuntu Server 18.04 LTS** and select the same in the drop-down list that appears.
 
     ![In the New blade, Ubuntu Server 18.04 LTS is selected.](media/image12.png "New blade")
 
-4. On the Ubuntu Server 18.04 LTS blade, select **Create**.
+3. On the Ubuntu Server 18.04 LTS blade, select **Create**.
 
     ![Resource Manager is selected in the Select a deployment model section.](media/image13.png "Select a deployment model section")
 
-5. On the Create a virtual machine Basics tab, enter the following:
+4. On the Create a virtual machine Basics tab, enter the following:
 
-    - **PROJECT DETAILS**
+    - **Project details**
         - **Subscription**: Select the subscription you are using for this hands-on lab.
         - **Resource group**: Select Create new and enter "hands-on-lab" for the resource group name.
-        
-    - **INSTANCE DETAILS**
+
+    - **Instance details**
         - **Virtual machine name**: Enter "batch-jumpbox".
         - **Region**: Select the region you are using for resources in this hands-on lab.
         - **Availability options**: Leave set to no infrastructure redundancy required.
-        - **Image**: Leave Ubuntu Server 16.04 LTS selected.
+        - **Image**: Leave Ubuntu Server 18.04 LTS selected.
         - **Size**: Leave the default value selected (e.g., Standard D2s v3).
-        
-    - **ADMINISTRATOR ACCOUNT**
+
+    - **Administrator account**
         - **Authentication type**: Select Password.
         - **Username**: labuser
         - **Password**: Password.1!!
-        - **Login in with Azure Active Directory**: Select Off.
-        
-    - **INBOUND PORT RULES**
+
+    - **Inbound port rules**
         - **Public inbound ports**: Select Allow selected ports.
-        - **Select inbound ports**: Select SSH from the list.
+        - **Select inbound ports**: Select SSH (22) from the list.
 
-    ![The values specified above are entered into the Create a virutal machine Basics tab.](media/create-vm-jump-box-basics-blade.png "Create a virtual machine Basics tab")
+    ![The values specified above are entered into the Create a virtual machine Basics tab.](media/create-vm-jump-box-basics-blade.png "Create a virtual machine Basics tab")
 
-6. Select **Next : Disks >**.
+5. Select **Review + create**. Note, the default values are used for the remaining tabs, so you don't need to set anything on those.
 
-7. On the Disks tab, select **Standard HDD** for the OS disk type, and select **Review + create**.
-
-    ![Standard HDD is selected as the OS disk type on the Create a virtual machine Disks tab.](media/create-vm-jump-box-disks-blade.png "Create a virtual machine Disks tab")
-
-8. On the Create tab, ensure a Validation passed message is displayed, and select **Create**.
+6. On the Review + create tab, ensure a Validation passed message is displayed and then select **Create**.
 
     ![Create a virtual machine Review + create tab](media/create-vm-jump-box-create-tab.png "Create a virtual machine Review + create tab")
 
-9. It will take about 3-5 minutes to deploy the jump box.
+7. It will take about 3-5 minutes to deploy the jump box.
 
-10. Once the VM is ready, navigate to the blade for the VM in the Azure Portal.
+8. Once the VM is ready, navigate to the blade for the VM in the Azure Portal.
 
-11. In the control bar, select **Connect**.
+9. In the control bar, select **Connect**.
 
     ![Under Connect, the command to connect to the VM displays.](media/image22.png "SSH command line")
 
-12. A dialog will appear showing the SSH command line to use to connect to the VM. Take note of the command, it includes the username (labuser in the below) and IP address (13.88.18.146 in the below) used to access the VM.
+10. A dialog will appear showing the SSH command line to use to connect to the VM. Take note of the command, it includes the username (labuser in the below) and IP address (13.88.18.146 in the below) used to access the VM.
 
-    ![Under Connect, the SSH command displays as previousy stated.](media/jump-box-connect.png "Connect section")
+    ![Under Connect, the SSH command displays as previously stated.](media/jump-box-connect.png "Connect section")
 
-13. Using your favorite tool, SSH into the VM. Be sure to provide the username and password you specified when creating the VM. In the steps that follow we will use Bash on Ubuntu on Windows, but any SSH client will work.
+11. Using your favorite tool, SSH into the VM. Be sure to provide the username and password you specified when creating the VM. In the steps that follow we will use Bash on Ubuntu on Windows, but any SSH client will work.
 
     ![An SSH shell prompt window displays commands.](media/image24.png "SSH window")
 
-14. Continue with the next task to complete the configuration of the VM.
+12. Continue with the next task to complete the configuration of the VM.
 
 ### Task 2: Install the Azure CLI and Azure Batch Extensions
 
@@ -220,49 +213,44 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 ### Task 3: Provision Azure Batch
 
-1. Navigate to Azure Portal in the browser.
+1. In the [Azure portal](https://portal.azure.com/), select the **Show portal menu** icon and then select **+Create a resource** from the menu.
 
-2. Select **+ Create a resource**.
+    ![The Show portal menu icon is highlighted, and the portal menu is displayed. Create a resource is highlighted in the portal menu.](media/create-a-resource.png "Create a resource")
 
-3. Search the Marketplace for Batch Service.
+2. Enter "batch service" into the Search the Marketplace box and select **Batch Service** from the results.
 
     ![In the New blade, batch service displays in the search field.](media/image26.png "New blade")
 
-4. In the list, select **Batch Service**.
-
-    ![Under Name in the Everything blade, Batch Service is selected.](media/create-resource-batch-service.png "Everything blade")
-
-5. Select **Create** on the Batch Service blade.
+3. Select **Create** on the Batch Service blade.
 
     ![The Batch Service blade displays.](media/image28.png "Batch Service blade")
 
-6. On the New Batch Account blade, specify the following:
+4. On the New Batch Account blade, specify the following:
 
-    - **PROJECT DETAILS**
+    - **Project details**
         - **Subscription**: Select the subscription in which to create the Batch account.
-        - **Resource group**: Select the existing resource group you created for this lab (hands-on-lab) for your new Batch account.
-        
-    - **INSTANCE DETAILS**
+        - **Resource group**: Select the hands-on-lab resource group you created for this lab.
+
+    - **Instance details**
         - **Account name**: Provide a name for your new Batch Account. The name you choose must be unique within the Azure region where the account is created (see Location below).
         - **Location**: The Azure region in which to create the Batch account.
 
-    - **STORAGE ACCOUNT**
-        - Choose **Select a storage account**, select **Create new** on the Choose storage account blade, and then enter a globally unique name for the storage account, and leave the remaining values set to their defaults. Select **OK**.    
+    - **Storage account**
+        - Choose **Select a storage account**, select **Create new** on the Choose storage account blade, and then enter a globally unique name for the storage account, and leave the remaining values set to their defaults. Select **OK**.
 
     ![The New Batch account blade is displayed with the values specified above entered into the appropriate fields.](media/create-batch-account.png "New Batch account")
 
-7. Select **Next: Advanced >**.
+5. Select **Next: Advanced >**.
 
-8. On the Advanced tab, ensure the following:
+6. On the Advanced tab, ensure the following:
 
-    - **POOL ALLOCATION MODE**
-        - **Pool allocation mode**: Set to Batch service.
+    - **Pool allocation mode**: Choose Batch service.
 
     ![The New Batch account blade advanced tab is displayed with the Pool allocation mode set to Batch service.](media/create-batch-account-advanced.png "New Batch Account Pool Allocation Mode")
 
-9. Select **Review + create**.
+7. Select **Review + create**.
 
-10. Ensure the Validate passed message is displayed, and then select **Create** to provision the new Batch account. The provisioning should only take a minute.
+8. Ensure the Validate passed message is displayed and then select **Create** to provision the new Batch account. The provisioning should only take a minute.
 
     ![Summary blade for creating a new Batch Account with validation passed message displayed.](media/create-batch-account-create.png "Create New Batch Account")
 

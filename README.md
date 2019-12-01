@@ -32,7 +32,7 @@ At the end of this session, you will be better able to design and recommend High
 
 In this hands-on lab, you will implement High Performance Computing (HPC) workloads targeted at 3D rendering and media processing in Azure using Azure Batch and Azure Storage.
 
-At the end of this hands-on lab, you will be better able to deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. You will be able to configure the pool of VMs to run the FFmpeg app to process videos across the VM nodes in the pool. You will be able to do this using Batch templates and files, which enable you to perform scale-out execution of command line executables (in this case FFmpeg) without having to write any code.
+At the end of this hands-on lab, you will be better able to deploy Azure Batch and an Azure Batch Pool consisting of Linux Virtual Machines. You will be able to configure the pool of VMs to run the FFmpeg app to process videos across the VM nodes in the pool. You will be able to do this using Batch templates and files, which enable you to perform scale-out execution of command-line executables (in this case FFmpeg) without having to write any code.
 
 ## Azure services and related products
 
