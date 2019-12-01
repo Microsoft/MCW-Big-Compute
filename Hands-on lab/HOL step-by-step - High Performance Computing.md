@@ -52,7 +52,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Create the File Groups](#task-1-create-the-file-groups)
     - [Task 2: Render a 3ds Max Scene](#task-2-render-a-3ds-max-scene)
   - [After the hands-on lab](#after-the-hands-on-lab)
-    - [Task 1: Cleanup the Lab Resource Group](#task-1-cleanup-the-lab-resource-group)
+    - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
 
 <!-- /TOC -->
 
@@ -1014,7 +1014,7 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
 
 Duration: 45 minutes
 
-In this exercise you will use the Azure Batch Rendering Service to render a frame from a 3D animation program used in industry that is called 3D Studio Max. The Batch Rendering Service coupled with the Batch Explorer application means you don't have to write any code to render using a render farm provided by Azure Batch.
+In this exercise you will use the Azure Batch Rendering Service to render a frame from a 3D animation program called 3D Studio Max that is used in industry. The Batch Rendering Service coupled with the Batch Explorer application means you don't have to write any code to render using a render farm provided by Azure Batch.
 
 ### Task 1: Create the File Groups
 
@@ -1042,120 +1042,90 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
         ![The Create file group page displays. ](media/image83.png "Create file group section")
 
-5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers, and this time select **Empty file group**.
+5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers.
 
     ![Screenshot of the new File Group options.](media/image81.png "New file group")
 
-6. Provide the name **3dsmax-output** and select **Confirm** to create the new file group.
+6. Provide the name **3dsmax-output**, check and the **Create an empty file group** box and then select **Create and close** to create the new file group.
 
     ![Under Add a new file group, 3dsmax-output displays.](media/image84.png "Add a new file group section")
 
 ### Task 2: Render a 3ds Max Scene
 
-1. Select the **Gallery** tab from the left.
+1. In Batch Explorer, select the **Gallery** tab from the left. In the list of Market applications, select **3ds Max** and then, in the list of actions presented, select **VRay or Arnold Scene**.
 
-    ![the Gallery of market applications displays on the Batch Explorer desktop.](media/image85.png "Batch Explorer desktop")
+    ![The Gallery of market applications displays on the Batch Explorer desktop.](media/image85.png "Batch Explorer desktop")
 
-2. In the list of Market applications, select **3ds Max**.
-
-3. You will be presented with list of actions you can take with 3ds Max and Azure Batch. Select **VRay or Arnold Scene**.
-
-    ![On the Choose action tab, a list of actions displays. At this time, we are unable to capture all of the action options. Future versions of this course should address this.](media/image86.png "Choose action")
-
-4. When using the Rendering Service, you can have the Pool automatically created according to the requirements of 3ds Max or you can supply your own (which requires you to properly configure such a Pool). Select **Run job with auto pool**.
+2. When using the Rendering Service, you can have the Pool automatically created according to the requirements of 3ds Max or you can supply your own (which requires you to properly configure such a Pool). Select **Run job with auto pool**.
 
     ![Under Mode, the Run job with auto pool button is selected.](media/image87.png "Run mode")
 
-5. In the Pool configuration, supply the pool name **3dsmax-Pool**. Leave the number of nodes at **1** and the VM size at **Standard\_D2\_V2**.
+3. In the Pool configuration, supply the pool name **3dsmax-pool**. Leave the number of nodes at **1** and the VM size at **Standard\_D2\_V2**.
 
     ![Under Pool, fields are set to the previously defined settings.](media/image88.png "Pool")
 
-6. Next, configure the Job. Provide the following:
+4. Next, configure the Job. Provide the following:
 
     - **Job Name**: 3dsmax-arnold
-
     - **Input filegroup**: Select the fgrp-3dsmax-input file group from the list.
-
     - **Scene file**: Select the file Introduction-to-Arnold_robot_final.max in the file dialog that displays.
-
-    - **Frame start**: Leave at 1, since we just want to render the first frame in this lab.
-
-    - **Frame end**: Leave at 1, since we just want to render the first frame in this lab.
-
-    - **Frame step**: Leave at 1, since we just want to render the first frame in this lab.
-
     - **Additional args**: To render an output that is 400 pixels wide and 300 pixels tall, set this to:
 
         ```bash
         -width:400 -height:300
         ```
 
+    - **Frame start**: Leave at 1, since we just want to render the first frame in this lab.
+    - **Frame end**: Leave at 1, since we just want to render the first frame in this lab.
     - **Outputs**: Select the fgrp-3dsmax-output file group from the list.
 
-        ![Under Job, fields are set to the previously defined settings.](media/image89.png "Job")
+    ![Under Job, fields are set to the previously defined settings.](media/image89.png "Job")
 
-7. Select the **Run and close** button to create the Pool and launch the render Job.
-
-    ![Screenshot of the Run and close button.](media/image90.png "Run and close")
-
-8. This will take you to the Jobs tab, with your new Job pre-selected.
+5. Select the **Run and close** button to create the Pool and launch the render Job. This will take you to the Jobs tab, with your new Job pre-selected.
 
     ![The Jobs tab displays on the Batch Explorer desktop. Zero tasks are active.](media/image91.png "Batch Explorer desktop, Jobs tab")
 
-9. It will take about 5 minutes for the Pool and the single VM to be provisioned. While you wait, it is worth understanding what is happening behind the scenes. The Batch will deploy the VM using an image that already contains 3ds Max, this saves tremendous startup time because installing 3ds Max as a startup task could take 20 minutes alone. Additionally, this particular image is pre-configured to use the licensing for 3ds Max that is provided in Azure by Microsoft. This means you do not need to acquire a license for the VM, nor setup your own licensing infrastructure. Instead, the cost of the license is rolled into the per hour fee associated with this Marketplace image.
+6. It will take about 5 minutes for the Pool and the single VM to be provisioned. While you wait, it is worth understanding what is happening behind the scenes. The Batch will deploy the VM using an image that already contains 3ds Max, this saves tremendous startup time because installing 3ds Max as a startup task could take 20 minutes alone. Additionally, this particular image is pre-configured to use the licensing for 3ds Max that is provided in Azure by Microsoft. This means you do not need to acquire a license for the VM, nor setup your own licensing infrastructure. Instead, the cost of the license is rolled into the per hour fee associated with this Marketplace image.
 
-10. While you wait, you can check out the Pool status to see how the provisioning of the node is proceeding. Use the Pools tab and then select the autopool that was created.
+7. While you wait, you can check out the Pool status to see how the provisioning of the node is proceeding. Use the Pools tab and then select the auto-pool that was created.
 
     ![The Pools tab displays on the Batch Explorer desktop. One node is starting.](media/image92.png "Batch Explorer desktop, Pools tab")
 
-11. Once the node is ready, it will flash thru the idle status and then begin running the render job (it's status will be running).
+8. Once the node is ready, it will flash thru the idle status and then begin running the render job (it's status will be running).
 
     ![This time, on the Batch Explorer desktop Pools tab, the node status is running.](media/image93.png "Batch Explorer desktop, Pools tab")
 
-12. It will take about 15 minutes to complete the job, return to the Jobs tab and select the 3dsmax3-arnold job to monitor the progress.
+9. It will take about 15 minutes to complete the job, return to the Jobs tab and select the 3dsmax3-arnold job to monitor the progress.
 
     ![This time, on the Batch Explorer desktop Jobs tab, job progress displays as active for 3dsmax3-arnold.](media/image94.png "Batch Explorer desktop, Jobs tab")
 
-13. When the single task is completed, select the Data tab, select the 3dsmax-output file group and then in the tree view expand the outputs folder. Select the JPG image that appears there. Your rendered, 3D robot still frame is ready!
+10. When the single task is completed, select the Data tab, select the 3dsmax-output file group and then in the tree view expand the outputs folder. Select the JPG image that appears there. Your rendered 3D robot still frame is ready!
 
     ![On the Batch Explorer desktop Data tab, the tree view is expanded, and the robot image displays.](media/image95.png "Batch Explorer desktop, Data tab")
 
-14. Return to the **Jobs** tab, and observe that the Job is also automatically terminating.
+11. Return to the **Jobs** tab, and observe that the Job is also automatically terminating.
 
     ![On the Batch Explorer desktop Jobs tab, the job status is terminating.](media/image96.png "Batch Explorer desktop, Jobs tab")
 
-15. Switch to the **Pools** tab and observe that the autopool is also being deleted automatically.
+12. Switch to the **Pools** tab and observe that the auto-pool is also being deleted automatically.
 
     ![On the Batch Explorer desktop Pools tab, the pool status is deleting.](media/image97.png "Batch Explorer desktop, Pools tab")
 
-16. In a few moments, your Pool will be cleaned up. The output files will remain in Azure Storage.
+13. In a few moments, your pool will be cleaned up. The output files will remain in Azure Storage.
 
-17. You can Continue to the lab cleanup exercise; you don't have to wait.
+14. You can Continue to the lab cleanup exercise; you don't have to wait.
 
 ## After the hands-on lab
 
 Duration: 10 minutes
 
-Before you conclude the lab, you should make sure to clean up all the resources used by the lab.
+In this exercise, you will de-provision all Azure resources that were created in support of this hands-on lab.
 
-### Task 1: Cleanup the Lab Resource Group
+### Task 1: Delete Azure resource groups
 
-1. Navigate to the Azure Portal and locate the Resource Group you created for this lab (hands-on-lab).
+1. In the Azure portal, select **Resource groups** from the Azure services menu.
+2. Delete the **hands-on-lab** resource group you created for this hands-on lab.
 
-2. Select Delete resource group from the command bar.
-
-    ![Screenshot of the Delete resource group button.](media/image98.png "Delete resource group button")
-
-3. In the confirmation dialog that appears, enter the name of the resource group and select Delete.
-
-    ![A warning displays in the Confirmation dialog box lists the resources that will be affected if you delete the resource group.](media/image99.png "Confirmation dialog box")
-
-4. Wait for the confirmation that the Resource Group has been successfully deleted. If you don't wait, and the delete fails for some reason, you may be left with resources running that were not expected. You can monitor using the Notifications dialog, accessible from the Alarm icon.
-
-    ![The Notifications dialog box has the message that it is deleting the resource group.](media/image100.png "Notifications dialog box")
-
-5. When the Notification indicates success, the cleanup is complete.
-
-    ![The Notifications dialog box has the message that it deleted the resource group.](media/image101.png "Notifications dialog box")
+    > **Important**: Wait for the confirmation that the Resource Group has been successfully deleted. If you don't wait, and the delete fails for some reason, you may be left with resources running that were not expected. You can monitor using the Notifications dialog, accessible from the Alarm icon in the top right of the Azure portal.
 
 You should follow all steps provided *after* attending the Hands-on lab.
