@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-August 2019
+November 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,11 +26,11 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [High Performance Computing before the hands-on lab setup guide](#High-performance-computing-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Download and Install Batch Explorer](#Task-1-Download-and-Install-Batch-Explorer)
-    - [Task 2: Download and Install Azure Storage Explorer](#Task-2-Download-and-Install-Azure-Storage-Explorer)
+- [High Performance Computing before the hands-on lab setup guide](#high-performance-computing-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Download and Install Batch Explorer](#task-1-download-and-install-batch-explorer)
+    - [Task 2: Download and Install Azure Storage Explorer](#task-2-download-and-install-azure-storage-explorer)
 
 <!-- /TOC -->
 
@@ -79,9 +79,9 @@ Prior to starting the hands-on lab, you should download and install the tools in
 
 1. Using a browser on your local machine, navigate to: <https://azure.microsoft.com/features/storage-explorer/>.
 
-2. Use the drop-down to select the **operating system** running on your local machine and select **Download Storage Explorer for free**. The steps that follow assume you are running Windows, but Mac OS X and Linux are also supported.
+2. Use the drop-down to select the **operating system** running on your local machine and then select **Download Storage now**. The steps that follow assume you are running Windows, but Mac OS X and Linux are also supported.
 
-    ![The Azure Storage Explorer download page displays.](media/image8.png "Azure Storage Explorer")
+    ![The Azure Storage Explorer download page is displayed.](media/image8.png "Azure Storage Explorer")
 
 3. Run the downloaded installed (e.g., StorageExplorer.exe).
 
