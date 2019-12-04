@@ -5,7 +5,7 @@ High Performance Computing
 </div>
 
 <div class="MCWHeader2">
-Whiteboard design session trainer guide
+Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
