@@ -29,8 +29,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - [High Performance Computing before the hands-on lab setup guide](#high-performance-computing-before-the-hands-on-lab-setup-guide)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Download and Install Batch Explorer](#task-1-download-and-install-batch-explorer)
-    - [Task 2: Download and Install Azure Storage Explorer](#task-2-download-and-install-azure-storage-explorer)
+    - [Task 1: Download and install Batch Explorer](#task-1-download-and-install-batch-explorer)
+    - [Task 2: Download and install Azure Storage Explorer](#task-2-download-and-install-azure-storage-explorer)
 
 <!-- /TOC -->
 
@@ -47,7 +47,7 @@ Duration: 15 minutes
 
 Prior to starting the hands-on lab, you should download and install the tools in this section on to the computer you will be using to complete the lab.
 
-### Task 1: Download and Install Batch Explorer
+### Task 1: Download and install Batch Explorer
 
 1. Using a browser on your local machine, navigate to: <https://azure.github.io/BatchExplorer/>.
 
@@ -75,7 +75,7 @@ Prior to starting the hands-on lab, you should download and install the tools in
 
 8. Your installation of Batch Explorer is ready for use.
 
-### Task 2: Download and Install Azure Storage Explorer
+### Task 2: Download and install Azure Storage Explorer
 
 1. Using a browser on your local machine, navigate to: <https://azure.microsoft.com/features/storage-explorer/>.
 
