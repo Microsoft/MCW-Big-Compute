@@ -49,8 +49,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Apply an Auto-scale Formula](#task-2-apply-an-auto-scale-formula)
     - [Task 3: Trigger and observe Auto-scale](#task-3-trigger-and-observe-auto-scale)
   - [Exercise 5: 3D Rendering with the Batch Rending Service](#exercise-5-3d-rendering-with-the-batch-rending-service)
-    - [Task 1: Create the File Groups](#task-1-create-the-file-groups)
-    - [Task 2: Render a 3ds Max Scene](#task-2-render-a-3ds-max-scene)
+    - [Task 1: Create the file groups](#task-1-create-the-file-groups)
+    - [Task 2: Render a 3ds Max scene](#task-2-render-a-3ds-max-scene)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
 
@@ -1016,7 +1016,7 @@ Duration: 45 minutes
 
 In this exercise you will use the Azure Batch Rendering Service to render a frame from a 3D animation program called 3D Studio Max that is used in industry. The Batch Rendering Service coupled with the Batch Explorer application means you don't have to write any code to render using a render farm provided by Azure Batch.
 
-### Task 1: Create the File Groups
+### Task 1: Create the file groups
 
 1. 3D animations are described in scene files. In this task you will use an example scene created with 3D Studio Max 2018. Download the sample scene from:
 
@@ -1026,7 +1026,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     ![The Introduction to Arnold robot final .max folder displays.](media/image80.png ".Max file").
 
-3. Next go to the Data tab in Batch Explorer, under Storage Containers select File Groups in the drop-down. Then select the **+** to the right of the label Storage Containers and select **From local folder (File group)**.
+3. Next go to the Data tab in Batch Explorer, under Storage Containers select File groups in the drop-down. Then select the **+** to the right of the label Storage Containers and select **From local folder (File group)**.
 
     ![Screenshot of the new File Group options.](media/image81.png "New file group")
 
@@ -1040,19 +1040,19 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     - Select **Create and close**.
 
-        ![The Create file group page displays. ](media/image83.png "Create file group section")
+        ![The Create file group page displays.](media/image83.png "Create file group section")
 
 5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers.
 
-    ![Screenshot of the new File Group options.](media/image81.png "New file group")
+    ![Screenshot of the new file group options.](media/image81.png "New file group")
 
 6. Provide the name **3dsmax-output**, check and the **Create an empty file group** box and then select **Create and close** to create the new file group.
 
     ![Under Add a new file group, 3dsmax-output displays.](media/image84.png "Add a new file group section")
 
-### Task 2: Render a 3ds Max Scene
+### Task 2: Render a 3ds Max scene
 
-1. In Batch Explorer, select the **Gallery** tab from the left. In the list of Market applications, select **3ds Max** and then, in the list of actions presented, select **VRay or Arnold Scene**.
+1. In Batch Explorer, select the **Gallery** tab from the left. In the list of Market applications, select **3ds Max** and then, in the list of actions presented, select **VRay or Arnold scene**.
 
     ![The Gallery of market applications displays on the Batch Explorer desktop.](media/image85.png "Batch Explorer desktop")
 
