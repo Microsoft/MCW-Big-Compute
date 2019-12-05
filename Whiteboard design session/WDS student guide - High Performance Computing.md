@@ -5,11 +5,11 @@ High Performance Computing
 </div>
 
 <div class="MCWHeader2">
-Whiteboard design session trainer guide
+Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-August 2019
+November 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,17 +26,17 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [High Performance Computing whiteboard design session student guide](#High-performance-computing-whiteboard-design-session-student-guide)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study)
-    - [Customer situation](#Customer-situation)
-    - [Customer needs](#Customer-needs)
-    - [Customer objections](#Customer-objections)
-    - [Infographic for common scenarios](#Infographic-for-common-scenarios)
-  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#Step-3-Present-the-solution)
-  - [Wrap-up](#Wrap-up)
-  - [Additional references](#Additional-references)
+- [High Performance Computing whiteboard design session student guide](#high-performance-computing-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
 
 <!-- /TOC -->
 
@@ -46,7 +46,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 In this whiteboard design session, you will work with a group to design a scale-out media processing solution using High Performance Computing (HPC) techniques in Azure.
 
-At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to effectively manage and monitor these solutions to ensure predictable outcomes.
+At the end of this session, you will be better able to design and recommend High Performance Computing solutions that are highly scalable and can be configured through declarative means as opposed to large amounts of complicated application code. You will also learn how to manage and monitor these solutions to ensure predictable outcomes effectively.
 
 ## Step 1: Review the customer case study
 
@@ -70,19 +70,19 @@ ThoughtRender provides image and video processing services to many industries; m
 
 ThoughtRender currently operates their own, on-premises services, with their own on-premises HPC clusters and other IT infrastructure, but their success has led to challenges in terms of their growth, and ability to scale to new jobs, and new industries. They are curious about cloud and think that not only could it help them scale, but help them improve costs and pass savings to customers, address the seasonality of rendering demand (by only paying for resources when actually used) and to take advantage of new technologies, such as the latest GPUs.
 
-Customers often ask questions like, "Could you get that job processed this week, instead of in 3 weeks' time?" ThoughtRender thinks that perhaps bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
+Customers often ask questions like, "Could you get that job processed this week, instead of in 3 weeks?" ThoughtRender thinks that perhaps bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
 
 They also want to consider how to integrate with their on-premises infrastructure and operating model. They have three large on-premises HPC clusters, one in each site, in London, New York, and Singapore. They also have labs in each site that provide high-end visualization workstations for quality control, mostly operated by internal staff, but sometimes together with customers. ThoughtRender have 3 petabytes (PB) of data (customer assets and working "scratch" data shares), 1 PB typically stored per site.
 
-Thomas Pix, CIO of ThoughtRender is looking to modernize their story. He would love to understand how to tap into the \"power of the cloud\" to be more flexible to customer demands, but also to consider new ways of working. Lots of data is generated via their on-premises HPC clusters, which also spends a lot of time moving between sites. He would love to see if they can move this data away from their on-premises datacenter into the cloud, and enhance their ability to load, process, and analyze it going forward. Given his long-standing relationship with Microsoft, he would like to see if Azure can meet his needs.
+Thomas Pix, CIO of ThoughtRender, is looking to modernize their story. He would love to understand how to tap into the \"power of the cloud\" to be more flexible to customer demands, but also to consider new ways of working. Lots of data is generated via their on-premises HPC clusters, which also spends a lot of time moving between sites. He would love to see if they can move this data away from their on-premises datacenter into the cloud and enhance their ability to load, process, and analyze it going forward. Given his long-standing relationship with Microsoft, he would like to see if Azure can meet his needs.
 
 ### Customer needs
 
 1. Want to be able to provide better flexibility to their customer demands (i.e., to have more work processed, or to complete work in a faster time).
 
-2. Want to investigate potential advantages to using cloud (e.g., latest technologies, bursting capability, cost savings).
+2. Want to investigate potential advantages to using the cloud (e.g., latest technologies, bursting capability, cost savings).
 
-3. Want to integrate with their on-premises systems where possible (e.g., to burst to cloud for additional capacity).
+3. Want to integrate with their on-premises systems where possible (e.g., to burst to the cloud for additional capacity).
 
 4. Want to collaborate and visualize the results of their work, on their own, or together with customers.
 
@@ -96,7 +96,7 @@ Thomas Pix, CIO of ThoughtRender is looking to modernize their story. He would l
 
 4. We have petabytes of data on-premises. It would cost us a fortune and take ages to move this to the cloud!
 
-5. We heard collaboration is possible for 3D imaging workstations, but we have very specific color requirements and buy top-end workstation equipment for our users. Our users just wouldn\'t get the interaction performance they require with something \"remote\" in the cloud.
+5. We heard that collaboration is possible for 3D imaging workstations, but we have very specific color requirements and buy top-end workstation equipment for our users. Our users just wouldn\'t get the interaction performance they require with something \"remote\" in the cloud.
 
 6. Will this take jobs away from our IT system administrators and HPC engineers?
 
