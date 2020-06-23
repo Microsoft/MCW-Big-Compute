@@ -6,7 +6,7 @@ They currently operate their own, on-premises services (with their own on-premis
 
 They believe that bursting jobs to the cloud could help them deliver bigger jobs, or regular jobs quicker for their customers (e.g., in 1 day, instead of 5 days). They intend to pilot a solution to address this.
 
-November 2019
+June 2020
 
 ## Target audience
 
