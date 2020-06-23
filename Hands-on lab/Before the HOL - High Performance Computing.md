@@ -69,7 +69,7 @@ Prior to starting the hands-on lab, you should download and install the tools in
 
     ![Screenshot of an empty Batch Explorer dashboard.](media/batch-explorer-dashboard.png "Batch Explorer dashboard")
 
-7. Note that you can switch between your subscription be selecting the subscriptions drop down.
+7. Note that you can switch between your subscription by selecting the subscriptions drop down.
 
     ![In the Batch accounts section, Subscriptions is set to pay as you go.](media/image7.png "Batch accounts section")
 
