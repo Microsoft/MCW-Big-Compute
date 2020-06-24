@@ -115,9 +115,9 @@ In this exercise, you will setup your environment to work with Azure Batch.
         - **Size**: Leave the default value selected (e.g., Standard D2s v3).
 
     - **Administrator account**
-        - **Authentication type**: Select Password.
+        - **Authentication type**: Select **Password**.
         - **Username**: labuser
-        - **Password**: Password.1!!
+        - **Password**: _Enter a valid password that you will remember_.
 
     - **Inbound port rules**
         - **Public inbound ports**: Select Allow selected ports.
@@ -135,17 +135,17 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 8. Once the VM is ready, navigate to the blade for the VM in the Azure Portal.
 
-9. In the control bar, select **Connect**.
+9. In the control bar, select **Connect**, then **SSH**.
 
-    ![Under Connect, the command to connect to the VM displays.](media/image22.png "SSH command line")
+    ![Under Connect, the command to connect to the VM displays.](media/jump-box-connect-link.png "SSH command line")
 
-10. A dialog will appear showing the SSH command line to use to connect to the VM. Take note of the command, it includes the username (labuser in the below) and IP address (13.88.18.146 in the below) used to access the VM.
+10. A dialog will appear showing the SSH command line to use to connect to the VM. Copy the SSH command next to step 4. It includes the VM username (labuser in the below) and IP address (52.242.125.247 in the below) used to access the VM. **Important**: Paste the command in a text editor and **remove** `-i <private key path>` so you have a command similar to `ssh labuser@52.242.125.247` (with your VM's IP address).
 
     ![Under Connect, the SSH command displays as previously stated.](media/jump-box-connect.png "Connect section")
 
-11. Using your favorite tool, SSH into the VM. Be sure to provide the username and password you specified when creating the VM. In the steps that follow we will use Bash on Ubuntu on Windows, but any SSH client will work.
+11. Using your favorite tool, execute the modified SSH command (e.g. `ssh labuser@52.242.125.247` with your VM's IP address) to connect to the VM. Enter your VM password when prompted. In the steps that follow we will use [Windows Terminal](https://docs.microsoft.com/windows/terminal/), but any SSH client will work.
 
-    ![An SSH shell prompt window displays commands.](media/image24.png "SSH window")
+    ![An SSH shell prompt window displays commands.](media/ssh-command.png "SSH window")
 
 12. Continue with the next task to complete the configuration of the VM.
 
@@ -153,7 +153,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 1. Install Azure CLI (upgrade CLI if needed).
 
-2. Within your SSH session, run the following command to prepare for the CLI:
+2. Within your SSH session, run the following command to prepare for the CLI (*you may need to run each command one at a time in your terminal window*):
 
     ```bash
     curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
@@ -183,12 +183,12 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 5. If you see output similar to the following, the install was a success:
 
-    ![A Code window displays the az command, and resultant Welcome to Azure message.](media/image25.png "Code window")
+    ![A Code window displays the az command, and resultant Welcome to Azure message.](media/az-command.png "Code window")
 
 6. The Azure CLI includes most of the functionality that you need for Azure Batch. However, new capabilities that are still in preview (such as the Templates and File feature we will use in this lab) are installed by an extension, and are not available from default Azure CLI installation. Run the following command to install the Microsoft Azure Batch Extensions. Note that you can always determine the latest release by visiting <https://github.com/Azure/azure-batch-cli-extensions/releases> and copying the URL for the Python Wheel (.whl) corresponding to the latest release. Use that URL as the value for the Source parameter in the following command:
 
     ```bash
-    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-4.0.0/azure_batch_cli_extensions-4.0.0-py2.py3-none-any.whl
+    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-6.0.0/azure_batch_cli_extensions-6.0.0-py2.py3-none-any.whl
     ```
 
 7. When prompted to install the extension, type Y and press enter.
@@ -203,11 +203,14 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
     ```json
     [
-      {
-        "extensionType": "whl",
-        "name": "azure-batch-cli-extensions",
-        "version": "4.0.0"
-      }
+        {
+            "experimental": false,
+            "extensionType": "whl",
+            "name": "azure-batch-cli-extensions",
+            "path": "/home/labuser/.azure/cliextensions/azure-batch-cli-extensions",
+            "preview": false,
+            "version": "6.0.0"
+        }
     ]
     ```
 
