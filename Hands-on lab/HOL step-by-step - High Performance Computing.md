@@ -48,7 +48,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Enable Auto-scale on the Pool](#task-1-enable-auto-scale-on-the-pool)
     - [Task 2: Apply an Auto-scale Formula](#task-2-apply-an-auto-scale-formula)
     - [Task 3: Trigger and observe Auto-scale](#task-3-trigger-and-observe-auto-scale)
-  - [Exercise 5: 3D Rendering with the Batch Rending Service](#exercise-5-3d-rendering-with-the-batch-rending-service)
+  - [Exercise 5: 3D Rendering with the Batch Rendering Service](#exercise-5-3d-rendering-with-the-batch-rendering-service)
     - [Task 1: Create the file groups](#task-1-create-the-file-groups)
     - [Task 2: Render a 3ds Max scene](#task-2-render-a-3ds-max-scene)
   - [After the hands-on lab](#after-the-hands-on-lab)
@@ -874,11 +874,11 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
 
     ![Screenshot of the Resize button.](media/image65.png "Resize button")
 
-4. Your current Auto scale configuration will appear, similar to how it appeared in the Azure Portal. Observe that this UI provides some sample formulas in the list on the right. You can also save whatever you have typed in the text box by selecting the disk icon to the right of the Saved Formulas.
+4. Your current Auto scale configuration will appear, similar to how it appeared in the Azure Portal. If you do not see your current Auto scale configuration, select View, then Reload. Observe that this UI provides some sample formulas in the list on the right. You can also save whatever you have typed in the text box by selecting the disk icon to the right of the Saved Formulas.
 
-    ![Under Resize your pool, Auto Scale is selected, and the same formula displays.](media/image66.png "Resize your pool section")
+    ![Under Resize your pool, Auto Scale is selected, and the same formula displays.](media/batch-explorer-auto-scale.png "Resize your pool section")
 
-5. Set the Evaluation interval to **5 minutes**. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
+5. Set the Evaluation interval to **5 minutes** if it is not already set to this value. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
 
     ![Evaluation interval is set to five minutes.](media/image67.png "Evaluation interval")
 
@@ -935,9 +935,9 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
     $NodeDeallocationOption = taskcompletion;
     ```
 
-12. Select **Save** in the Resize your pool dialog.
+12. Select the **Requeue** task action, then **Save** in the Resize your pool dialog.
 
-    ![The Resize your pool dialog box displays.](media/image68.png "Resize your pool dialog box")
+    ![The Resize your pool dialog box displays.](media/batch-explorer-autoscale-formula.png "Resize your pool dialog box")
 
 13. Verify that the Formula was applied, by selecting the **Resize** button again. If it did not save your Formula:
 
@@ -1014,7 +1014,7 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
 
 14. If you were patient to sit thru this evaluation of the auto-scale rules, hopefully your patience was rewarded as you witnessed a Batch Pool scale up from 0 nodes to 4 nodes, process the queued tasks and then gradually scale back down to 0 nodes. All of this without any input from you.
 
-## Exercise 5: 3D Rendering with the Batch Rending Service
+## Exercise 5: 3D Rendering with the Batch Rendering Service
 
 Duration: 45 minutes
 
@@ -1036,7 +1036,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
 4. On the Create file group blade, provide:
 
-    - **File group name**: Specify 3dsmax-input.
+    - **File group name**: Specify `3dsmax-input`.
 
     - **Files**: Use the select a folder button to navigate to the **scene** directory and select it.
 
@@ -1044,7 +1044,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     - Select **Create and close**.
 
-        ![The Create file group page displays.](media/image83.png "Create file group section")
+        ![The Create file group page displays.](media/batch-explorer-create-file-group.png "Create file group section")
 
 5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers.
 
