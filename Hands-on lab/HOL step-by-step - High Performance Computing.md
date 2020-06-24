@@ -286,8 +286,9 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 
 1. Open a browser and navigate to the following URL to preview the high-resolution video you will be down sampling:
 
-    <https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4>\
-    ![A screenshot of the Sample video displays.](media/image35.png "Sample video")
+    <https://github.com/Microsoft/MCW-Big-Compute/blob/master/Hands-on%20lab/lab-files/big_buck_bunny_720p_30mb.mp4?raw=true>
+    
+    ![A screenshot of the Sample video displays.](media/sample-video.png "Sample video")
 
     (c) copyright 2008, Blender Foundation / www.bigbuckbunny.org
 
@@ -303,7 +304,7 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 4. Next, download the video you previously saw into this folder by running this command:
 
     ```bash
-    wget https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4
+    wget -O big_buck_bunny_720p_30mb.mp4 https://github.com/Microsoft/MCW-Big-Compute/blob/master/Hands-on%20lab/lab-files/big_buck_bunny_720p_30mb.mp4?raw=true
     ```
 
     Make a few copies of the video to create some additional work for the processing we will perform:
@@ -331,7 +332,7 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 7. You will see a prompt similar to the following in the SSH terminal:
 
     ```http
-    To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code BDQGEJR7V to authenticate.
+    To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZC5XB4YS to authenticate.
     ```
 
 8. Open the supplied URL in a browser and then paste in the supplied code:
