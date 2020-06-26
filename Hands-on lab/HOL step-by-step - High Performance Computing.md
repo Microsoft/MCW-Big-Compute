@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-November 2019
+June 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -48,7 +48,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Enable Auto-scale on the Pool](#task-1-enable-auto-scale-on-the-pool)
     - [Task 2: Apply an Auto-scale Formula](#task-2-apply-an-auto-scale-formula)
     - [Task 3: Trigger and observe Auto-scale](#task-3-trigger-and-observe-auto-scale)
-  - [Exercise 5: 3D Rendering with the Batch Rending Service](#exercise-5-3d-rendering-with-the-batch-rending-service)
+  - [Exercise 5: 3D Rendering with the Batch Rendering Service](#exercise-5-3d-rendering-with-the-batch-rendering-service)
     - [Task 1: Create the file groups](#task-1-create-the-file-groups)
     - [Task 2: Render a 3ds Max scene](#task-2-render-a-3ds-max-scene)
   - [After the hands-on lab](#after-the-hands-on-lab)
@@ -115,9 +115,9 @@ In this exercise, you will setup your environment to work with Azure Batch.
         - **Size**: Leave the default value selected (e.g., Standard D2s v3).
 
     - **Administrator account**
-        - **Authentication type**: Select Password.
+        - **Authentication type**: Select **Password**.
         - **Username**: labuser
-        - **Password**: Password.1!!
+        - **Password**: _Enter a valid password that you will remember_.
 
     - **Inbound port rules**
         - **Public inbound ports**: Select Allow selected ports.
@@ -135,17 +135,17 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 8. Once the VM is ready, navigate to the blade for the VM in the Azure Portal.
 
-9. In the control bar, select **Connect**.
+9. In the control bar, select **Connect**, then **SSH**.
 
-    ![Under Connect, the command to connect to the VM displays.](media/image22.png "SSH command line")
+    ![Under Connect, the command to connect to the VM displays.](media/jump-box-connect-link.png "SSH command line")
 
-10. A dialog will appear showing the SSH command line to use to connect to the VM. Take note of the command, it includes the username (labuser in the below) and IP address (13.88.18.146 in the below) used to access the VM.
+10. A dialog will appear showing the SSH command line to use to connect to the VM. Copy the SSH command next to step 4. It includes the VM username (labuser in the below) and IP address (52.242.125.247 in the below) used to access the VM. **Important**: Paste the command in a text editor and **remove** `-i <private key path>` so you have a command similar to `ssh labuser@52.242.125.247` (with your VM's IP address).
 
     ![Under Connect, the SSH command displays as previously stated.](media/jump-box-connect.png "Connect section")
 
-11. Using your favorite tool, SSH into the VM. Be sure to provide the username and password you specified when creating the VM. In the steps that follow we will use Bash on Ubuntu on Windows, but any SSH client will work.
+11. Using your favorite tool, execute the modified SSH command (e.g. `ssh labuser@52.242.125.247` with your VM's IP address) to connect to the VM. Enter your VM password when prompted. In the steps that follow we will use [Windows Terminal](https://docs.microsoft.com/windows/terminal/), but any SSH client will work.
 
-    ![An SSH shell prompt window displays commands.](media/image24.png "SSH window")
+    ![An SSH shell prompt window displays commands.](media/ssh-command.png "SSH window")
 
 12. Continue with the next task to complete the configuration of the VM.
 
@@ -153,7 +153,7 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 1. Install Azure CLI (upgrade CLI if needed).
 
-2. Within your SSH session, run the following command to prepare for the CLI:
+2. Within your SSH session, run the following command to prepare for the CLI (*you may need to run each command one at a time in your terminal window*):
 
     ```bash
     curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
@@ -183,12 +183,12 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
 5. If you see output similar to the following, the install was a success:
 
-    ![A Code window displays the az command, and resultant Welcome to Azure message.](media/image25.png "Code window")
+    ![A Code window displays the az command, and resultant Welcome to Azure message.](media/az-command.png "Code window")
 
 6. The Azure CLI includes most of the functionality that you need for Azure Batch. However, new capabilities that are still in preview (such as the Templates and File feature we will use in this lab) are installed by an extension, and are not available from default Azure CLI installation. Run the following command to install the Microsoft Azure Batch Extensions. Note that you can always determine the latest release by visiting <https://github.com/Azure/azure-batch-cli-extensions/releases> and copying the URL for the Python Wheel (.whl) corresponding to the latest release. Use that URL as the value for the Source parameter in the following command:
 
     ```bash
-    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-4.0.0/azure_batch_cli_extensions-4.0.0-py2.py3-none-any.whl
+    az extension add --source https://github.com/Azure/azure-batch-cli-extensions/releases/download/azure-batch-cli-extensions-6.0.0/azure_batch_cli_extensions-6.0.0-py2.py3-none-any.whl
     ```
 
 7. When prompted to install the extension, type Y and press enter.
@@ -203,11 +203,14 @@ In this exercise, you will setup your environment to work with Azure Batch.
 
     ```json
     [
-      {
-        "extensionType": "whl",
-        "name": "azure-batch-cli-extensions",
-        "version": "4.0.0"
-      }
+        {
+            "experimental": false,
+            "extensionType": "whl",
+            "name": "azure-batch-cli-extensions",
+            "path": "/home/labuser/.azure/cliextensions/azure-batch-cli-extensions",
+            "preview": false,
+            "version": "6.0.0"
+        }
     ]
     ```
 
@@ -283,8 +286,9 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 
 1. Open a browser and navigate to the following URL to preview the high-resolution video you will be down sampling:
 
-    <https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4>\
-    ![A screenshot of the Sample video displays.](media/image35.png "Sample video")
+    <https://github.com/Microsoft/MCW-Big-Compute/blob/master/Hands-on%20lab/lab-files/big_buck_bunny_720p_30mb.mp4?raw=true>
+    
+    ![A screenshot of the Sample video displays.](media/sample-video.png "Sample video")
 
     (c) copyright 2008, Blender Foundation / www.bigbuckbunny.org
 
@@ -300,7 +304,7 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 4. Next, download the video you previously saw into this folder by running this command:
 
     ```bash
-    wget https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4
+    wget -O big_buck_bunny_720p_30mb.mp4 https://github.com/Microsoft/MCW-Big-Compute/blob/master/Hands-on%20lab/lab-files/big_buck_bunny_720p_30mb.mp4?raw=true
     ```
 
     Make a few copies of the video to create some additional work for the processing we will perform:
@@ -328,7 +332,7 @@ In this exercise, you resample video files in a scale-out way by using Azure Bat
 7. You will see a prompt similar to the following in the SSH terminal:
 
     ```http
-    To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code BDQGEJR7V to authenticate.
+    To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code AZC5XB4YS to authenticate.
     ```
 
 8. Open the supplied URL in a browser and then paste in the supplied code:
@@ -870,11 +874,11 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
 
     ![Screenshot of the Resize button.](media/image65.png "Resize button")
 
-4. Your current Auto scale configuration will appear, similar to how it appeared in the Azure Portal. Observe that this UI provides some sample formulas in the list on the right. You can also save whatever you have typed in the text box by selecting the disk icon to the right of the Saved Formulas.
+4. Your current Auto scale configuration will appear, similar to how it appeared in the Azure Portal. If you do not see your current Auto scale configuration, select View, then Reload. Observe that this UI provides some sample formulas in the list on the right. You can also save whatever you have typed in the text box by selecting the disk icon to the right of the Saved Formulas.
 
-    ![Under Resize your pool, Auto Scale is selected, and the same formula displays.](media/image66.png "Resize your pool section")
+    ![Under Resize your pool, Auto Scale is selected, and the same formula displays.](media/batch-explorer-auto-scale.png "Resize your pool section")
 
-5. Set the Evaluation interval to **5 minutes**. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
+5. Set the Evaluation interval to **5 minutes** if it is not already set to this value. This is the shortest interval over which Batch will re-evaluate whatever code you supply for the Auto Scale formula.
 
     ![Evaluation interval is set to five minutes.](media/image67.png "Evaluation interval")
 
@@ -931,9 +935,9 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
     $NodeDeallocationOption = taskcompletion;
     ```
 
-12. Select **Save** in the Resize your pool dialog.
+12. Select the **Requeue** task action, then **Save** in the Resize your pool dialog.
 
-    ![The Resize your pool dialog box displays.](media/image68.png "Resize your pool dialog box")
+    ![The Resize your pool dialog box displays.](media/batch-explorer-autoscale-formula.png "Resize your pool dialog box")
 
 13. Verify that the Formula was applied, by selecting the **Resize** button again. If it did not save your Formula:
 
@@ -1010,7 +1014,7 @@ We had to enable Auto-scale using the portal, but we can also edit the Auto-scal
 
 14. If you were patient to sit thru this evaluation of the auto-scale rules, hopefully your patience was rewarded as you witnessed a Batch Pool scale up from 0 nodes to 4 nodes, process the queued tasks and then gradually scale back down to 0 nodes. All of this without any input from you.
 
-## Exercise 5: 3D Rendering with the Batch Rending Service
+## Exercise 5: 3D Rendering with the Batch Rendering Service
 
 Duration: 45 minutes
 
@@ -1032,7 +1036,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
 4. On the Create file group blade, provide:
 
-    - **File group name**: Specify 3dsmax-input.
+    - **File group name**: Specify `3dsmax-input`.
 
     - **Files**: Use the select a folder button to navigate to the **scene** directory and select it.
 
@@ -1040,7 +1044,7 @@ In this exercise you will use the Azure Batch Rendering Service to render a fram
 
     - Select **Create and close**.
 
-        ![The Create file group page displays.](media/image83.png "Create file group section")
+        ![The Create file group page displays.](media/batch-explorer-create-file-group.png "Create file group section")
 
 5. Next, you will create the file group that will contain the Job outputs. From the top select the **+** to the right of the label Storage Containers.
 
