@@ -1,5 +1,5 @@
-### This workshop will be retired effective May 31, 2021  
-All materials will remain available through May, but content is no longer being maintained. 
+# Important - Please Note
+This workshop will be retired effective May 31, 2021.  All materials will remain available through May, but content is no longer being maintained. 
 
 # High Performance Computing
 
